@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="added linear least square and unit tests">
+    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="added best subset class and fit score class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/TEST_LeastSquare.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/TEST_LeastSquare.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StatisticalLearning/LeastSquare.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StatisticalLearning/ModelSelection/BestSubset.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/ModelSelection/BestSubset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StatisticalLearning/ModelSelection/FitQualityCriterion.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/ModelSelection/FitScore.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StatisticalLearning/TEST_LeastSquare.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,6 +16,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Python Unit Test" />
         <option value="Python Script" />
       </list>
     </option>
@@ -40,7 +44,12 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
   </component>
-  <component name="RunManager" selected="Python tests.Python tests in TEST_LeastSquare.py">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\15300\PycharmProjects\pythonProject\StatisticalLearning\UnitTest" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python tests.Python tests in TEST_BestSubset.py">
     <configuration name="LeastSquare" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -83,7 +92,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for TEST_LeastSquare.TEST_LeastSquare.test_sum_square_error" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for StatisticalLearning.UnitTest.TEST_LeastSquare.TEST_LeastSquare.test_sum_square_error" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -93,8 +102,36 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;TEST_LeastSquare.TEST_LeastSquare.test_sum_square_error&quot;" />
+      <option name="_new_target" value="&quot;StatisticalLearning.UnitTest.TEST_LeastSquare.TEST_LeastSquare.test_sum_square_error&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests in TEST_BestSubset.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/StatisticalLearning/UnitTest" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_BestSubset.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests in TEST_FitScore.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/StatisticalLearning/UnitTest" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_FitScore.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <configuration name="Python tests in TEST_LeastSquare.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
@@ -107,14 +144,16 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/StatisticalLearning/TEST_LeastSquare.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_LeastSquare.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests in TEST_BestSubset.py" />
+        <item itemvalue="Python tests.Python tests in TEST_FitScore.py" />
         <item itemvalue="Python tests.Python tests in TEST_LeastSquare.py" />
-        <item itemvalue="Python tests.Python tests for TEST_LeastSquare.TEST_LeastSquare.test_sum_square_error" />
+        <item itemvalue="Python tests.Python tests for StatisticalLearning.UnitTest.TEST_LeastSquare.TEST_LeastSquare.test_sum_square_error" />
         <item itemvalue="Python.LeastSquare" />
       </list>
     </recent_temporary>
@@ -149,7 +188,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629567337776</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added best subset class and fit score class">
+      <created>1629598649848</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1629598649848</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -174,10 +220,12 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initialized least square class" />
     <MESSAGE value="added linear least square and unit tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="added linear least square and unit tests" />
+    <MESSAGE value="added best subset class and fit score class" />
+    <option name="LAST_COMMIT_MESSAGE" value="added best subset class and fit score class" />
   </component>
 </project>

@@ -5,20 +5,27 @@ from itertools import combinations
 from typing import Union, List
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import cross_validate
-from FitQualityCriterion import FitScore as metric
+from StatisticalLearning.ModelSelection.FitScore import FitScore
 
 
 class BestSubset(ABC):
 
-    #######################################################################################################
-    # Best subset algorithm:                                                                              #
-    # Step 1: Denote M_0 as the null model, which uses sample mean as prediction                          #
-    # Step 2: For k = 1, 2, ..., p:                                                                       #
-    #           (a) Find all C(k, p) k-feature combinations and fit a regression model                    #
-    #           (b) Denote M_k as the best model with k features based on RSS/MSE/R^2 on training set     #
-    # Step 3: Select a single best model out of M_0, M_1, ..., M_p based on cross validated prediction    #
-    #         error (AIC/BIC/R^2-adj) on training set                                                     #
-    #######################################################################################################
+    #########################################################################################################
+    # Best subset algorithm:                                                                                #
+    #   Step 1: Denote M_0 as the null model, which uses sample mean as prediction                          #
+    #   Step 2: For k = 1, 2, ..., p:                                                                       #
+    #             (a) Find all C(k, p) k-feature combinations and fit a regression model                    #
+    #             (b) Denote M_k as the best model with k features based on RSS/MSE/R^2 on training set     #
+    #   Step 3: Select a single best model out of M_0, M_1, ..., M_p based on cross validated prediction    #
+    #           error (AIC/BIC/R^2-adj) on training set                                                     #
+    #                                                                                                       #
+    # Limitation:                                                                                           #
+    #   (1) Computationally expensive                                                                       #
+    #   (2) Potentially overfitting                                                                         #
+    #                                                                                                       #
+    # Solution:                                                                                             #
+    #   Heap package in R is proved to successfully handle both issues                                      #
+    #########################################################################################################
 
     def __init__(self,
                  X: pd.DataFrame,
@@ -81,7 +88,7 @@ class LinearRegressionBestSubset(BestSubset):
 
             subset = self._X.iloc[:, list(sub_index)]
             lr = LinearRegression(fit_intercept=True, copy_X=True).fit(subset, self._y)
-            mean_squared_error = metric.mean_square_error(self._y, lr.predict(subset))
+            mean_squared_error = FitScore.mean_square_error(self._y, lr.predict(subset))
 
             if mean_squared_error < best_mse:
                 best_index = list(sub_index)
