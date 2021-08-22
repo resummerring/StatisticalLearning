@@ -20,4 +20,4 @@ class TEST_LeastSquare(unittest.TestCase):
         y = 2 * X.iloc[:, 0] - 3 * X.iloc[:, 1] + X.iloc[:, 2]
         ls = LinearLeastSquare(X, y)
         coef = ls.optimize(init_guess=pd.Series([1, -1, 1]))
-        self.assertAlmostEqual(np.linalg.norm(coef - np.array([2, -3, 1])), 0)
+        self.assertAlmostEqual(np.linalg.norm(coef - np.array([2, -3, 1])), 0, places=5)
