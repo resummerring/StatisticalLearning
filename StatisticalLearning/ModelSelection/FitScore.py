@@ -46,3 +46,16 @@ class FitScore:
         nbr_samples = len(y_true)
         return 1 - (1 - FitScore.r_square(y_true, y_pred)) * (nbr_samples - 1) / (nbr_samples - nbr_features - 1)
 
+    @staticmethod
+    def aic_linear(y_true: Union[pd.Series, np.ndarray],
+                   y_pred: Union[pd.Series, np.ndarray, float],
+                   nbr_features: int) -> float:
+        """
+        AIC = 2k - 2ln(L) where k is number of predictors and L is likelihood
+        Under Gaussian distribution assumption, AIC can be simplified as:
+        AIC = 2k + nlog(SSR) + C where C = n(log(2\pi) - log(n)) + n
+        """
+        nbr_samples = len(y_true)
+        ssr = FitScore.sum_square_error(y_true, y_pred)
+        return nbr_samples * (np.log(2 * np.pi) + np.log(ssr) - np.log(nbr_samples)) \
+            + 2 * (nbr_features + 1) + nbr_samples

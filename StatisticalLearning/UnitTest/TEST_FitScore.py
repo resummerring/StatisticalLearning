@@ -15,7 +15,6 @@ class TEST_FitScore(unittest.TestCase):
         self._y_pred = self._result.predict(self._X)
 
     def test_sum_square_error(self):
-        x = FitScore.sum_square_error(self._y_true, self._y_pred)
         self.assertAlmostEqual(FitScore.sum_square_error(self._y_true, self._y_pred),
                                mean_squared_error(self._y_true, self._y_pred) * len(self._y_true))
         self.assertAlmostEqual(FitScore.sum_square_error(self._y_true, 0),
@@ -38,3 +37,6 @@ class TEST_FitScore(unittest.TestCase):
     def test_adjusted_r_square(self):
         self.assertEqual(FitScore.adjusted_r_square(self._y_true, self._y_pred, self._X.shape[1] - 1),
                          self._result.rsquared_adj)
+
+    def test_aic_linear(self):
+        self.assertAlmostEqual(FitScore.aic_linear(self._y_true, self._y_pred, self._X.shape[1] - 1), self._result.aic)

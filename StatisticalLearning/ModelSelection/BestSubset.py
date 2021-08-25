@@ -1,14 +1,19 @@
 import pandas as pd
 import numpy as np
+from typing import Union, List
 from abc import ABC, abstractmethod
 from itertools import combinations
-from typing import Union, List
+from sklearn.metrics import make_scorer
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import cross_validate
 from StatisticalLearning.ModelSelection.FitScore import FitScore
 
 
 class BestSubset(ABC):
+
+    """
+    Base class for best subset model selection methods
+    """
 
     #########################################################################################################
     # Best subset algorithm:                                                                                #
@@ -41,7 +46,8 @@ class BestSubset(ABC):
 
         lr = LinearRegression(fit_intercept=False, copy_X=False)
         intercept = pd.DataFrame(data=np.ones((self._X.shape[0], 1)))
-        best_score = cross_validate(lr, intercept, self._y, 10, 'aic')['test_score']
+        scorer = make_scorer(FitScore.aic_linear, nbr_features=0, greater_is_better=False)
+        best_score = cross_validate(estimator=lr, X=intercept, y=self._y, cv=10, scoring=scorer)['test_score'].mean()
 
         return best_score
 
@@ -57,7 +63,7 @@ class BestSubset(ABC):
         return
 
     @abstractmethod
-    def find_best_model(self) -> Union[List[int], None]:
+    def find_best_model(self, **kwargs) -> Union[List[int], None]:
 
         """
         Abstract method to find the optimal model from best models with different
@@ -101,23 +107,19 @@ class LinearRegressionBestSubset(BestSubset):
         lr = LinearRegression(fit_intercept=True, copy_X=True)
         global_best_score, global_best_index = self._null_model_score(), None
 
-        for k in range(self._X.shape[1]):
+        for k in range(1, self._X.shape[1] + 1):
 
             local_best_index = self.find_best_model_with_fixed_size(k)
             subset = self._X.iloc[:, local_best_index]
-            local_best_score = cross_validate(lr, subset, self._y, 10, 'aic')['test_score']
+            scorer = make_scorer(FitScore.aic_linear, nbr_features=subset.shape[1], greater_is_better=False)
+            local_best_score = cross_validate(estimator=lr, X=subset, y=self._y, cv=10,
+                                              scoring=scorer)['test_score'].mean()
             print(f'Best model with {k} features: AIC = {local_best_score}, best index = {local_best_index}')
 
             if local_best_score < global_best_score:
                 global_best_index = local_best_index
 
         return global_best_index
-
-
-
-
-
-
 
 
 
