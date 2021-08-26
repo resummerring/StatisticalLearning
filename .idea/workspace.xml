@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="added unit tests for linear best subset and fit score">
+    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="added AIC score for linear regression">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/StatisticalLearning/ModelSelection/BestSubset.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/ModelSelection/BestSubset.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/ModelSelection/FitScore.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/ModelSelection/FitScore.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_BestSubset.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_SubsetSelection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_FitScore.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_FitScore.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StatisticalLearning/ModelSelection/Stepwise.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/ModelSelection/Stepwise.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_SubsetSelection.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_SubsetSelection.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +48,7 @@
       <recent name="C:\Users\15300\PycharmProjects\pythonProject\StatisticalLearning\UnitTest" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests in TEST_SubsetSelection.py">
+  <component name="RunManager" selected="Python tests.Python tests in TEST_StepwiseSelection.py">
     <configuration name="BestSubset" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -92,20 +91,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for StatisticalLearning.UnitTest.TEST_LeastSquare.TEST_LeastSquare.test_sum_square_error" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="pythonProject" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/StatisticalLearning" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;StatisticalLearning.UnitTest.TEST_LeastSquare.TEST_LeastSquare.test_sum_square_error&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
     <configuration name="Python tests in C:/Users/15300/PycharmProjects/pythonProject/StatisticalLearning/UnitTest/TEST_LeastSquare.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -134,6 +119,20 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
+    <configuration name="Python tests in TEST_StepwiseSelection.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/StatisticalLearning/UnitTest" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_StepwiseSelection.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
     <configuration name="Python tests in TEST_SubsetSelection.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -150,11 +149,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests in TEST_StepwiseSelection.py" />
         <item itemvalue="Python tests.Python tests in TEST_SubsetSelection.py" />
         <item itemvalue="Python.BestSubset" />
         <item itemvalue="Python tests.Python tests in TEST_FitScore.py" />
         <item itemvalue="Python tests.Python tests in C:/Users/15300/PycharmProjects/pythonProject/StatisticalLearning/UnitTest/TEST_LeastSquare.py" />
-        <item itemvalue="Python tests.Python tests for StatisticalLearning.UnitTest.TEST_LeastSquare.TEST_LeastSquare.test_sum_square_error" />
       </list>
     </recent_temporary>
   </component>
@@ -202,7 +201,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629669042792</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="added AIC score for linear regression">
+      <created>1629860151567</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1629860151567</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -234,18 +240,10 @@
     <MESSAGE value="added linear least square and unit tests" />
     <MESSAGE value="added best subset class and fit score class" />
     <MESSAGE value="added unit tests for linear best subset and fit score" />
-    <option name="LAST_COMMIT_MESSAGE" value="added unit tests for linear best subset and fit score" />
+    <MESSAGE value="added AIC score for linear regression" />
+    <option name="LAST_COMMIT_MESSAGE" value="added AIC score for linear regression" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_SubsetSelection.py</url>
-          <line>27</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="tests">
         <watch expression="x" />

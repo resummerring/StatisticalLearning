@@ -21,10 +21,14 @@ class TEST_LinearRegressionBestSubset(unittest.TestCase):
         self.assertEqual(self._lr.find_best_model_with_fixed_size(3), [2, 3, 8])
         self.assertEqual(self._lr.find_best_model_with_fixed_size(4), [2, 3, 4, 8])
         self.assertEqual(self._lr.find_best_model_with_fixed_size(5), [1, 2, 3, 6, 8])
+        self.assertEqual(self._lr.find_best_model_with_fixed_size(6), [1, 2, 3, 4, 5, 8])
+        self.assertEqual(self._lr.find_best_model_with_fixed_size(7), [1, 2, 3, 4, 5, 7, 8])
+        self.assertEqual(self._lr.find_best_model_with_fixed_size(8), [1, 2, 3, 4, 5, 7, 8, 9])
+        self.assertEqual(self._lr.find_best_model_with_fixed_size(9), [1, 2, 3, 4, 5, 6, 7, 8, 9])
+        self.assertEqual(self._lr.find_best_model_with_fixed_size(10), [0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
 
-    # TODO: add tests for finding optimal model
     def test_find_best_model(self):
-        self._lr.find_best_model()
+        self.assertEqual(self._lr.find_best_model(), [1, 2, 3, 6, 8])
 
 
 

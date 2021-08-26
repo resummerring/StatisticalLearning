@@ -46,7 +46,7 @@ class BestSubset(ABC):
 
         lr = LinearRegression(fit_intercept=False, copy_X=False)
         intercept = pd.DataFrame(data=np.ones((self._X.shape[0], 1)))
-        scorer = make_scorer(FitScore.aic_linear, nbr_features=0, greater_is_better=False)
+        scorer = make_scorer(FitScore.adjusted_r_square, nbr_features=0, greater_is_better=True)
         best_score = cross_validate(estimator=lr, X=intercept, y=self._y, cv=10, scoring=scorer)['test_score'].mean()
 
         return best_score
@@ -106,18 +106,20 @@ class LinearRegressionBestSubset(BestSubset):
 
         lr = LinearRegression(fit_intercept=True, copy_X=True)
         global_best_score, global_best_index = self._null_model_score(), None
+        print(f'Best model with intercept only: Adj-R2 = {global_best_score}')
 
         for k in range(1, self._X.shape[1] + 1):
 
             local_best_index = self.find_best_model_with_fixed_size(k)
             subset = self._X.iloc[:, local_best_index]
-            scorer = make_scorer(FitScore.aic_linear, nbr_features=subset.shape[1], greater_is_better=False)
+            scorer = make_scorer(FitScore.adjusted_r_square, nbr_features=subset.shape[1], greater_is_better=True)
             local_best_score = cross_validate(estimator=lr, X=subset, y=self._y, cv=10,
                                               scoring=scorer)['test_score'].mean()
-            print(f'Best model with {k} features: AIC = {local_best_score}, best index = {local_best_index}')
+            print(f'Best model with {k} features: Adj-R2 = {local_best_score}, best index = {local_best_index}')
 
-            if local_best_score < global_best_score:
+            if local_best_score > global_best_score:
                 global_best_index = local_best_index
+                global_best_score = local_best_score
 
         return global_best_index
 
