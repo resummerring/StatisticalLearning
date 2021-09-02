@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="added forward and backward stepwise selction and unittests">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="added principal component regression and partial least squares">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/StatisticalLearning/ModelSelection/BestSubset.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/ModelSelection/BestSubset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StatisticalLearning/ModelSelection/FitScore.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/FitScore.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StatisticalLearning/ModelSelection/Shrinkage.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/ModelSelection/Shrinkage.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/StatisticalLearning/ModelSelection/Stepwise.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/ModelSelection/Stepwise.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StatisticalLearning/Preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/Preprocess.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_FitScore.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_FitScore.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_Shrinkage.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_Shrinkage.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,31 +49,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\15300\PycharmProjects\pythonProject\StatisticalLearning" />
       <recent name="C:\Users\15300\PycharmProjects\pythonProject\StatisticalLearning\UnitTest" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests in TEST_Shrinkage.py">
-    <configuration name="BestSubset" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="pythonProject" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/StatisticalLearning/ModelSelection" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/StatisticalLearning/ModelSelection/BestSubset.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python tests.Python tests in TEST_CrossValidation.py">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -91,7 +75,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests in TEST_FitScore.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests in TEST_CrossValidation.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -101,7 +85,21 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_FitScore.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_CrossValidation.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests in TEST_Preprocess.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/StatisticalLearning/UnitTest" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_Preprocess.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
@@ -149,11 +147,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests in TEST_Shrinkage.py" />
-        <item itemvalue="Python tests.Python tests in TEST_StepwiseSelection.py" />
+        <item itemvalue="Python tests.Python tests in TEST_CrossValidation.py" />
         <item itemvalue="Python tests.Python tests in TEST_SubsetSelection.py" />
-        <item itemvalue="Python.BestSubset" />
-        <item itemvalue="Python tests.Python tests in TEST_FitScore.py" />
+        <item itemvalue="Python tests.Python tests in TEST_StepwiseSelection.py" />
+        <item itemvalue="Python tests.Python tests in TEST_Preprocess.py" />
+        <item itemvalue="Python tests.Python tests in TEST_Shrinkage.py" />
       </list>
     </recent_temporary>
   </component>
@@ -215,7 +213,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629946042207</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="added principal component regression and partial least squares">
+      <created>1630451214455</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1630451214455</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -249,7 +254,8 @@
     <MESSAGE value="added unit tests for linear best subset and fit score" />
     <MESSAGE value="added AIC score for linear regression" />
     <MESSAGE value="added forward and backward stepwise selction and unittests" />
-    <option name="LAST_COMMIT_MESSAGE" value="added forward and backward stepwise selction and unittests" />
+    <MESSAGE value="added principal component regression and partial least squares" />
+    <option name="LAST_COMMIT_MESSAGE" value="added principal component regression and partial least squares" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

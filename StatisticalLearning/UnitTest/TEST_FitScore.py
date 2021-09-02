@@ -2,7 +2,7 @@ import unittest
 import numpy as np
 import pandas as pd
 import statsmodels.api as sm
-from StatisticalLearning.ModelSelection.FitScore import FitScore
+from StatisticalLearning.FitScore import FitScore
 from sklearn.metrics import mean_squared_error, r2_score
 
 

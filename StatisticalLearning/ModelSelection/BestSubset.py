@@ -6,7 +6,7 @@ from itertools import combinations
 from sklearn.metrics import make_scorer
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import cross_validate
-from StatisticalLearning.ModelSelection.FitScore import FitScore
+from StatisticalLearning.FitScore import FitScore
 
 
 class BestSubset(ABC):
@@ -58,7 +58,7 @@ class BestSubset(ABC):
         :param k: int, number of features
         :return: Union[List[int], None], column index of best k features in X
         """
-        return
+        raise NotImplementedError
 
     @abstractmethod
     def find_best_model(self, **kwargs) -> Union[List[int], None]:
@@ -69,7 +69,7 @@ class BestSubset(ABC):
 
         :return: Union[List[int], None], column index of optimal subset features in X
         """
-        return
+        raise NotImplementedError
 
 
 class LinearRegressionBestSubset(BestSubset):

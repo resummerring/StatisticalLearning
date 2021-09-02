@@ -6,7 +6,7 @@ import statsmodels.api as sm
 from sklearn.metrics import make_scorer
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import cross_validate
-from StatisticalLearning.ModelSelection.FitScore import FitScore
+from StatisticalLearning.FitScore import FitScore
 
 
 class StepwiseSelection(ABC):
@@ -86,7 +86,7 @@ class StepwiseSelection(ABC):
         :param last_best_index: List[int], best feature index from last step
         :return: Union[List[int], None], column index of best features at this step
         """
-        return
+        raise NotImplementedError
 
     @abstractmethod
     def find_best_model(self) -> Union[List[int], None]:
@@ -97,7 +97,7 @@ class StepwiseSelection(ABC):
 
         :return: Union[List[int], None], column index of optimal subset features in X
         """
-        return
+        raise NotImplementedError
 
 
 class LinearRegressionStepwiseForward(StepwiseSelection):

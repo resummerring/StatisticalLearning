@@ -2,7 +2,7 @@ import unittest
 import pandas as pd
 from sklearn import datasets
 from sklearn.linear_model import LinearRegression
-from StatisticalLearning.ModelSelection.FitScore import FitScore
+from StatisticalLearning.FitScore import FitScore
 from StatisticalLearning.ModelSelection.Shrinkage import PCRegression, PartialLeastSquare
 
 

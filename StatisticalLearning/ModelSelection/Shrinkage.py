@@ -40,7 +40,7 @@ class PCRegression:
         Fit a linear regression model using principal components
         """
 
-        X_scaled, _, _ = Preprocessor.standardize(X)
+        X_scaled, _, _ = Preprocessor.normalize(X)
         self._pca = PCA(n_components=self._n_components)
         X_reduced = self._pca.fit_transform(X_scaled)
         self._lr = LinearRegression(fit_intercept=True, copy_X=True).fit(X_reduced, y)
@@ -54,7 +54,7 @@ class PCRegression:
         if self._pca is None or self._lr is None:
             raise ValueError("Model hasn't been fitted yet")
 
-        X_test_scaled, _, _ = Preprocessor.standardize(X_test)
+        X_test_scaled, _, _ = Preprocessor.normalize(X_test)
         X_reduced_test = self._pca.transform(X_test_scaled)
         return self._lr.predict(X_reduced_test)
 
@@ -95,7 +95,7 @@ class PartialLeastSquare:
 
     def fit(self, X: pd.DataFrame, y: pd.Series) -> PartialLeastSquare:
 
-        X_scaled, self._mean, self._std = Preprocessor.standardize(X)
+        X_scaled, self._mean, self._std = Preprocessor.normalize(X)
 
         # Loading matrix
         W, P, q = [], [], []

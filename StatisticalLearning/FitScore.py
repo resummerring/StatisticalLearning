@@ -10,7 +10,7 @@ class FitScore:
     """
 
     @staticmethod
-    def sum_square_error(y_true: Union[pd.Series, np.ndarray],
+    def sum_square_error(y_true: Union[pd.Series, np.ndarray, float],
                          y_pred: Union[pd.Series, np.ndarray, float]) -> float:
         """
         SSR = sum[(y_true[i] - y_pred[i]) ** 2]
@@ -18,7 +18,7 @@ class FitScore:
         return np.sum(np.square(y_true - y_pred)).squeeze()
 
     @staticmethod
-    def mean_square_error(y_true: Union[pd.Series, np.ndarray],
+    def mean_square_error(y_true: Union[pd.Series, np.ndarray, float],
                           y_pred: Union[pd.Series, np.ndarray, float]) -> float:
         """
         MSE =  mean[(y_true[i] - y_pred[i]) ** 2]
@@ -26,7 +26,7 @@ class FitScore:
         return np.mean(np.square(y_true - y_pred)).squeeze()
 
     @staticmethod
-    def r_square(y_true: Union[pd.Series, np.ndarray],
+    def r_square(y_true: Union[pd.Series, np.ndarray, float],
                  y_pred: Union[pd.Series, np.ndarray, float]) -> float:
         """
         SST = sum[(y_true[i]) - mean(y_true) ** 2]
@@ -37,7 +37,7 @@ class FitScore:
         return 1 - ssr / sst
 
     @staticmethod
-    def adjusted_r_square(y_true: Union[pd.Series, np.ndarray],
+    def adjusted_r_square(y_true: Union[pd.Series, np.ndarray, float],
                           y_pred: Union[pd.Series, np.ndarray, float],
                           nbr_features: int) -> float:
         """
@@ -47,7 +47,7 @@ class FitScore:
         return 1 - (1 - FitScore.r_square(y_true, y_pred)) * (nbr_samples - 1) / (nbr_samples - nbr_features - 1)
 
     @staticmethod
-    def aic_linear(y_true: Union[pd.Series, np.ndarray],
+    def aic_linear(y_true: Union[pd.Series, np.ndarray, float],
                    y_pred: Union[pd.Series, np.ndarray, float],
                    nbr_features: int) -> float:
         """
