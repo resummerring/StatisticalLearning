@@ -6,7 +6,7 @@ import statsmodels.api as sm
 from sklearn.metrics import make_scorer
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import cross_validate
-from StatisticalLearning.FitScore import FitScore
+from StatisticalLearning.ModelAssessment.ModelScore import ModelScore
 
 
 class StepwiseSelection(ABC):
@@ -72,7 +72,7 @@ class StepwiseSelection(ABC):
 
         lr = LinearRegression(fit_intercept=False, copy_X=False)
         intercept = pd.DataFrame(data=np.ones((self._X.shape[0], 1)))
-        scorer = make_scorer(FitScore.adjusted_r_square, nbr_features=0, greater_is_better=True)
+        scorer = make_scorer(ModelScore.adjusted_r_square, nbr_features=0, greater_is_better=True)
         best_score = cross_validate(estimator=lr, X=intercept, y=self._y, cv=10, scoring=scorer)['test_score'].mean()
 
         return best_score
@@ -123,7 +123,7 @@ class LinearRegressionStepwiseForward(StepwiseSelection):
             included = last_best_index + [index]
             subset = self._X.iloc[:, included]
             lr = LinearRegression(fit_intercept=True, copy_X=True).fit(subset, self._y)
-            mean_squared_error = FitScore.mean_square_error(self._y, lr.predict(subset))
+            mean_squared_error = ModelScore.mean_square_error(self._y, lr.predict(subset))
 
             if mean_squared_error < best_mse:
                 best_index = included
@@ -141,7 +141,7 @@ class LinearRegressionStepwiseForward(StepwiseSelection):
 
             local_best_index = self.find_best_model_next_step(local_best_index)
             subset = self._X.iloc[:, local_best_index]
-            scorer = make_scorer(FitScore.adjusted_r_square, nbr_features=subset.shape[1], greater_is_better=True)
+            scorer = make_scorer(ModelScore.adjusted_r_square, nbr_features=subset.shape[1], greater_is_better=True)
             local_best_score = cross_validate(estimator=lr, X=subset, y=self._y, cv=10,
                                               scoring=scorer)['test_score'].mean()
             print(f'Best model with {k + 1} features: Adj-R2 = {local_best_score}, best index = {local_best_index}')
@@ -174,7 +174,7 @@ class LinearRegressionStepwiseBackward(StepwiseSelection):
             included = list(full_candidates - {index})
             subset = self._X.iloc[:, included]
             lr = LinearRegression(fit_intercept=True, copy_X=True).fit(subset, self._y)
-            mean_squared_error = FitScore.mean_square_error(self._y, lr.predict(subset))
+            mean_squared_error = ModelScore.mean_square_error(self._y, lr.predict(subset))
 
             if mean_squared_error < best_mse:
                 best_index = included
@@ -186,7 +186,7 @@ class LinearRegressionStepwiseBackward(StepwiseSelection):
 
         lr = LinearRegression(fit_intercept=True, copy_X=True)
 
-        scorer = make_scorer(FitScore.adjusted_r_square, nbr_features=self._X.shape[1], greater_is_better=True)
+        scorer = make_scorer(ModelScore.adjusted_r_square, nbr_features=self._X.shape[1], greater_is_better=True)
         global_best_score = cross_validate(estimator=lr, X=self._X, y=self._y, cv=10,
                                            scoring=scorer)['test_score'].mean()
         global_best_index, local_best_index = list(range(self._X.shape[1])), list(range(self._X.shape[1]))
@@ -196,7 +196,7 @@ class LinearRegressionStepwiseBackward(StepwiseSelection):
 
             local_best_index = self.find_best_model_next_step(local_best_index)
             subset = self._X.iloc[:, local_best_index]
-            scorer = make_scorer(FitScore.adjusted_r_square, nbr_features=subset.shape[1], greater_is_better=True)
+            scorer = make_scorer(ModelScore.adjusted_r_square, nbr_features=subset.shape[1], greater_is_better=True)
             local_best_score = cross_validate(estimator=lr, X=subset, y=self._y, cv=10,
                                               scoring=scorer)['test_score'].mean()
             print(f'Best model with {k} features: Adj-R2 = {local_best_score}, best index = {local_best_index}')
@@ -237,7 +237,7 @@ class LinearRegressionStepwiseBidirectional(StepwiseSelection):
             included = last_best_index + [index]
             subset = self._X.iloc[:, included]
             lr = LinearRegression(fit_intercept=True, copy_X=True).fit(subset, self._y)
-            mean_squared_error = FitScore.mean_square_error(self._y, lr.predict(subset))
+            mean_squared_error = ModelScore.mean_square_error(self._y, lr.predict(subset))
 
             if mean_squared_error < best_mse:
                 best_index = included
@@ -259,7 +259,7 @@ class LinearRegressionStepwiseBidirectional(StepwiseSelection):
             local_best_index_next = self.find_best_model_next_step(local_best_index)
 
             subset = self._X.iloc[:, local_best_index]
-            scorer = make_scorer(FitScore.adjusted_r_square, nbr_features=subset.shape[1], greater_is_better=True)
+            scorer = make_scorer(ModelScore.adjusted_r_square, nbr_features=subset.shape[1], greater_is_better=True)
             local_best_score = cross_validate(estimator=lr, X=subset, y=self._y, cv=10,
                                               scoring=scorer)['test_score'].mean()
 
