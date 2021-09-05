@@ -10,6 +10,10 @@ from StatisticalLearning.Optimization.GradientOptimizer import GradientDescent, 
 
 class LinearRegression:
 
+    """
+    Multiple Linear Regression: y = b_0 + b_1 * x_1 + b_2 * x_2 + ... + b_p *x_p
+    """
+
     def __init__(self, fit_intercept: bool = True):
         self._fit_intercept = fit_intercept
         self._degrees_freedom = None
@@ -57,28 +61,55 @@ class LinearRegression:
         self._coef_t_stat, self._intercept_t_stat = None, None
         self._coef_p_value, self._intercept_p_value = None, None
 
+    @staticmethod
+    def func(coef: pd.Series, data: Tuple[pd.DataFrame, pd.Series]) -> float:
+        """
+        Objective function for gradient descent and stochastic gradient descent
+        """
+
+        X_train, y_train = data
+        X_train = np.array(X_train)
+        return ((y_train - X_train @ coef).T @ (y_train - X_train @ coef)) / X_train.shape[0]
+
+    @staticmethod
+    def grad_gd(coef: pd.Series, data: Tuple[pd.DataFrame, pd.Series]) -> pd.Series:
+        """
+        Gradient for gradient descent
+        """
+
+        X_train, y_train = data
+        X_train = np.array(X_train)
+        return (X_train.T @ (X_train @ coef - y_train)) / X_train.shape[0]
+
+    @staticmethod
+    def grad_sgd(coef: pd.Series, data: Tuple[pd.Series, float]) -> pd.Series:
+        """
+        Gradient for stochastic gradient descent
+        """
+
+        X_train, y_train = data
+        X_train = np.array(X_train).reshape(1, -1)
+        return pd.Series((X_train.T @ (X_train @ coef - y_train)))
+
     def fit(self, X: pd.DataFrame, y: pd.Series, solver: str = 'GradientDescent', **kwargs) -> LinearRegression:
 
         """
         :param X: pd.DataFrame, n * p data matrix with n = #samples and p = #features
         :param y: pd.Series, n * 1 label vector
-        :param solver: str, {'GradientDescent', 'StochasticGradientDescent', 'NormalEquation'}
+        :param solver: str, {'GradientDescent', 'StochasticGradientDescent', 'NormalEquation', SVD'}
         """
 
         self._clean_up()
 
         self._degrees_freedom = X.shape[0] - X.shape[1]
 
+        X, y = X.reset_index(drop=True), y.reset_index(drop=True)
+        X.columns = list(range(X.shape[1]))
+
         if self._fit_intercept:
             X = sm.add_constant(X)
 
         coefs = pd.Series(np.zeros(X.shape[1]))
-
-        # Objective function for gradient descent and stochastic gradient descent
-        def func(coef: pd.Series, data: Tuple[pd.DataFrame, pd.Series]) -> float:
-            X_train, y_train = data
-            X_train = np.array(X_train)
-            return ((y_train - X_train @ coef).T @ (y_train - X_train @ coef)) / X_train.shape[0]
 
         if solver == 'NormalEquation':
 
@@ -89,20 +120,16 @@ class LinearRegression:
 
         elif solver == 'GradientDescent':
 
-            # Gradient for gradient descent
-            def grad(coef: pd.Series, data: Tuple[pd.DataFrame, pd.Series]) -> pd.Series:
-                X_train, y_train = data
-                X_train = np.array(X_train)
-                return (X_train.T @ (X_train @ coef - y_train)) / X_train.shape[0]
-
-            optimizer = GradientDescent(func, grad)
+            optimizer = GradientDescent(self.func, self.grad_gd)
             x0 = kwargs['x0'] if 'x0' in kwargs else coefs
             learning_rate = kwargs['learning_rate'] if 'learning_rate' in kwargs else 0.1
+            momentum = kwargs['momentum'] if 'momentum' in kwargs else 0.8
             func_tol = kwargs['func_tol'] if 'func_tol' in kwargs else 1e-8
             param_tol = kwargs['param_tol'] if 'param_tol' in kwargs else 1e-8
             max_iter = kwargs['max_iter'] if 'max_iter' in kwargs else 1000
             result = optimizer.solve(x0=x0,
                                      learning_rate=learning_rate,
+                                     momentum=momentum,
                                      func_tol=func_tol,
                                      param_tol=param_tol,
                                      max_iter=max_iter,
@@ -115,13 +142,7 @@ class LinearRegression:
 
         elif solver == 'StochasticGradientDescent':
 
-            # Gradient for stochastic gradient descent
-            def grad(coef: pd.Series, data: Tuple[pd.Series, float]) -> pd.Series:
-                X_train, y_train = data
-                X_train = np.array(X_train).reshape(1, -1)
-                return pd.Series((X_train.T @ (X_train @ coef - y_train))) / X.shape[0]
-
-            optimizer = StochasticGradientDescent(func, grad)
+            optimizer = StochasticGradientDescent(self.func, self.grad_sgd)
             x0 = kwargs['x0'] if 'x0' in kwargs else coefs
             learning_rate = kwargs['learning_rate'] if 'learning_rate' in kwargs else 0.1
             func_tol = kwargs['func_tol'] if 'func_tol' in kwargs else 1e-8
@@ -137,6 +158,13 @@ class LinearRegression:
             else:
                 raise ValueError('Stochastic gradient descent failed.')
 
+        elif solver == 'SVD':
+            try:
+                U, S, Vt = np.linalg.svd(X, full_matrices=False)
+                coefs = pd.Series(Vt.T @ np.linalg.inv(np.diag(S)) @ U.T @ y)
+            except np.linalg.LinAlgError:
+                raise ValueError("SVD failed: unsuccessful SVD decomposition.")
+
         else:
             raise NotImplementedError
 
@@ -144,7 +172,7 @@ class LinearRegression:
         try:
             coefs_std = pd.Series(np.sqrt(np.diag(np.linalg.inv(X.T @ X)) * residual_var))
         except np.linalg.LinAlgError:
-            raise ValueError("t-test failed: singular data matrix")
+            raise ValueError("t-test failed: singular data matrix.")
 
         t_stats = coefs / coefs_std
         p_values = pd.Series([2 * (1 - stats.t.cdf(abs(t_stat), self.degrees_freedom)) for t_stat in t_stats])

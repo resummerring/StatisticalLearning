@@ -39,6 +39,7 @@ class GradientDescent(Optimizer):
     def solve(self,
               x0: Union[float, np.ndarray, pd.Series],
               learning_rate: float = 0.1,
+              momentum: float = 0.8,
               data: Union[Tuple[pd.DataFrame, pd.Series], None] = None,
               param_tol: float = 1e-8,
               func_tol: float = 1e-8,
@@ -49,6 +50,7 @@ class GradientDescent(Optimizer):
 
         :param x0: Union[float, np.ndarray, pd.Series], initial guess for optimum
         :param learning_rate: float, learning rate for convergence
+        :param momentum: float, momentum for updating gradient
         :param data: Union[Tuple[pd.DataFrame, pd.Series], None], data matrix and label vector
         :param param_tol: float: convergence tolerance for ||param_current - param_next||
         :param func_tol: float: convergence tolerance for |func_current - func_next|
@@ -59,12 +61,17 @@ class GradientDescent(Optimizer):
 
         # Container to store parameters and functions at each step
         param_container, func_container = [param], [func]
+        try:
+            delta = pd.Series(np.zeros(len(param)))
+        except TypeError:
+            delta = 0
 
         it, func_diff, param_diff = 0, 1e8, 1e8
 
         while it < max_iter and (func_diff > func_tol or param_diff > param_tol):
 
-            param = param - learning_rate * self._gradient(param, data)
+            delta = learning_rate * self._gradient(param, data) + momentum * delta
+            param = param - delta
             param_container.append(param)
             func_container.append(self._function(param, data))
 

@@ -4,7 +4,7 @@ import pandas as pd
 from statsmodels import api
 from sklearn import datasets
 from sklearn import linear_model
-from StatisticalLearning.LinearModel.LineaerRegression import LinearRegression
+from StatisticalLearning.LinearModel.LinearRegression import LinearRegression
 
 
 class TEST_LinearRegression(unittest.TestCase):
@@ -21,6 +21,11 @@ class TEST_LinearRegression(unittest.TestCase):
 
         lr = LinearRegression(fit_intercept=False).fit(self._X, self._y, solver='NormalEquation')
         self.assertEqual(lr.intercept, None)
+        self.assertAlmostEqual(np.linalg.norm(lr.coef - self._lr.coef_, ord=2), 0)
+
+    def test_svd_decomposition(self):
+        lr = LinearRegression(fit_intercept=True).fit(self._X, self._y, solver='SVD')
+        self.assertAlmostEqual(lr.intercept, self._lr.intercept_)
         self.assertAlmostEqual(np.linalg.norm(lr.coef - self._lr.coef_, ord=2), 0)
 
     def test_t_stat_and_p_value(self):
@@ -52,6 +57,6 @@ class TEST_LinearRegression(unittest.TestCase):
 
         sklearn_lr = linear_model.LinearRegression(fit_intercept=True, copy_X=True).fit(X, y)
         lr = LinearRegression(fit_intercept=True).fit(X, y, solver='StochasticGradientDescent', func_tol=1e-10,
-                                                      learning_rate=0.4, max_epoc=100, x0=pd.Series([0, 1, 2]))
+                                                      learning_rate=4e-4, max_epoc=100, x0=pd.Series([0, 1, 2]))
         self.assertAlmostEqual(lr.intercept, sklearn_lr.intercept_, places=4)
         self.assertAlmostEqual(np.max([abs(sklearn_lr.coef_[i] - lr.coef.iloc[i]) for i in [0, 1]]), 0, places=4)
