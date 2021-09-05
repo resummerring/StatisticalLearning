@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="added cross validation methods and unit tests">
+    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/CrossValidation/CrossValidation.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/ModelAssessment/CrossValidation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/FitScore.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/ModelAssessment/ModelScore.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/ModelSelection/BestSubset.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/ModelSelection/BestSubset.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/ModelSelection/Shrinkage.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/LinearModel/ShrinkageRegression.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/ModelSelection/Stepwise.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/ModelSelection/Stepwise.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_CrossValidation.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_CrossValidation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_FitScore.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_ModelScore.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_Shrinkage.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_ShrinkageRegression.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StatisticalLearning/LinearModel/LineaerRegression.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/LinearModel/LineaerRegression.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StatisticalLearning/Optimization/GradientOptimizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/Optimization/GradientOptimizer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_LinearRegression.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_LinearRegression.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +52,7 @@
       <recent name="C:\Users\15300\PycharmProjects\pythonProject\StatisticalLearning\UnitTest" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests in TEST_LinearRegression.py">
+  <component name="RunManager" selected="Python tests.Python tests for TEST_LinearRegression.TEST_LinearRegression.test_t_stat_and_p_value">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -77,6 +72,34 @@
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for TEST_LinearRegression.TEST_LinearRegression.test_t_stat" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/StatisticalLearning/UnitTest" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;TEST_LinearRegression.TEST_LinearRegression.test_t_stat&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for TEST_LinearRegression.TEST_LinearRegression.test_t_stat_and_p_value" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/StatisticalLearning/UnitTest" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;TEST_LinearRegression.TEST_LinearRegression.test_t_stat_and_p_value&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <configuration name="Python tests in TEST_CrossValidation.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
@@ -121,41 +144,13 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests in TEST_StepwiseSelection.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="pythonProject" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/StatisticalLearning/UnitTest" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_StepwiseSelection.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests in TEST_SubsetSelection.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="pythonProject" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/StatisticalLearning/UnitTest" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_SubsetSelection.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests for TEST_LinearRegression.TEST_LinearRegression.test_t_stat_and_p_value" />
+        <item itemvalue="Python tests.Python tests for TEST_LinearRegression.TEST_LinearRegression.test_t_stat" />
         <item itemvalue="Python tests.Python tests in TEST_LinearRegression.py" />
         <item itemvalue="Python tests.Python tests in TEST_Optimizer.py" />
         <item itemvalue="Python tests.Python tests in TEST_CrossValidation.py" />
-        <item itemvalue="Python tests.Python tests in TEST_SubsetSelection.py" />
-        <item itemvalue="Python tests.Python tests in TEST_StepwiseSelection.py" />
       </list>
     </recent_temporary>
   </component>
@@ -231,7 +226,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630552129744</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="added gradient descent and stochastic gradient descent">
+      <created>1630781956995</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1630781956995</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -267,26 +269,14 @@
     <MESSAGE value="added forward and backward stepwise selction and unittests" />
     <MESSAGE value="added principal component regression and partial least squares" />
     <MESSAGE value="added cross validation methods and unit tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="added cross validation methods and unit tests" />
+    <MESSAGE value="added gradient descent and stochastic gradient descent" />
+    <option name="LAST_COMMIT_MESSAGE" value="added gradient descent and stochastic gradient descent" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/StatisticalLearning/Optimization/GradientOptimizer.py</url>
-          <line>132</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_LinearRegression.py</url>
-          <line>36</line>
-          <option name="timeStamp" value="32" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="tests">
         <watch expression="x" />
+        <watch expression="sklearn_lr" language="Python" />
       </configuration>
     </watches-manager>
   </component>

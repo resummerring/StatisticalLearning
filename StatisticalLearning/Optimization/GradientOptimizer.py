@@ -77,6 +77,8 @@ class GradientDescent(Optimizer):
 
             it += 1
 
+            print(f"Iteration {it} with objective error = {func_container[-1]}")
+
         success = True if it < max_iter else False
 
         return OptimizationResult(success, param, func_container[-1], param_container, func_container, it)
@@ -148,14 +150,17 @@ class StochasticGradientDescent(Optimizer):
 
             for i in range(X_epoc.shape[0]):
                 x_i, y_i = X_epoc.iloc[i, :], y_epoc.iloc[i]
+                gard = self._gradient(param, (x_i, y_i))
                 param = param - learning_rate * self._gradient(param, (x_i, y_i))
 
             param_container.append(param)
             func_container.append(self._function(param, data))
             func_diff = abs(func_container[-1] - func_container[-2])
 
+            print(f"Epoc {epoc} with objective error = {func_container[-1]}")
+
             epoc += 1
 
-        success = True if epoc <= max_epoc else False
+        success = True if epoc < max_epoc else False
 
         return OptimizationResult(success, param, func_container[-1], param_container, func_container, epoc)
