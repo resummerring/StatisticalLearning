@@ -1,4 +1,5 @@
 import unittest
+import warnings
 import numpy as np
 import pandas as pd
 import statsmodels.api as sm
@@ -9,6 +10,9 @@ from sklearn.metrics import mean_squared_error, r2_score
 class TEST_FitScore(unittest.TestCase):
 
     def setUp(self):
+
+        warnings.filterwarnings('ignore', category=FutureWarning)
+
         self._X = sm.add_constant(pd.DataFrame([[1], [2], [3], [4], [5]]))
         self._y_true = pd.Series([2, 3.2, 4.1, 6.5, 5.5])
         self._result = sm.OLS(self._y_true, self._X).fit()

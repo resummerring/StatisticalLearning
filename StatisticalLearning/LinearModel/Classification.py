@@ -58,6 +58,16 @@ class LogisticRegression:
         prob = X_train.apply(lambda row: LogisticRegression.prob(coef, row), axis=1)
         return X_train.apply(lambda col: col @ (prob - y_train), axis=0) / X_train.shape[0]
 
+    @staticmethod
+    def grad_sgd(coef: pd.Series, data: Tuple[pd.Series, float]) -> pd.Series:
+        """
+        Gradient for stochastic gradient descent
+        """
+
+        X_train, y_train = data
+        prob = LogisticRegression.prob(coef, X_train)
+        return pd.Series((prob - y_train) * X_train)
+
     def fit(self, X: pd.DataFrame, y: pd.Series, solver: str = 'GradientDescent', **kwargs) -> LogisticRegression:
 
         """
@@ -97,8 +107,27 @@ class LogisticRegression:
                 coefs = result.optimum
             else:
                 raise ValueError("Gradient descent failed.")
+
+        elif solver == 'StochasticGradientDescent':
+
+            optimizer = StochasticGradientDescent(self.func, self.grad_sgd)
+            x0 = kwargs['x0'] if 'x0' in kwargs else coefs
+            learning_rate = kwargs['learning_rate'] if 'learning_rate' in kwargs else 0.1
+            func_tol = kwargs['func_tol'] if 'func_tol' in kwargs else 1e-8
+            max_epoc = kwargs['max_epoc'] if 'max_epoc' in kwargs else 1000
+            result = optimizer.solve(x0=x0,
+                                     learning_rate=learning_rate,
+                                     func_tol=func_tol,
+                                     max_epoc=max_epoc,
+                                     data=(X, y))
+
+            if result.success:
+                coefs = result.optimum
+            else:
+                raise ValueError("Stochastic gradient descent failed.")
+
         else:
-            raise NotImplementedError
+            raise NotImplementedError("No implementation for the input solver.")
 
         if self._fit_intercept:
             self._coef, self._intercept = coefs.iloc[1:].reset_index(drop=True), coefs.iloc[0]

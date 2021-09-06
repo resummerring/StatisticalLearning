@@ -2,7 +2,11 @@ import numpy as np
 import pandas as pd
 from copy import deepcopy
 from typing import Callable, Union, Tuple, List
+from StatisticalLearning.Toolbox.Logger import Logger
 from StatisticalLearning.Optimization.Optimization import OptimizationResult, Optimizer
+
+
+logger = Logger.get_logger(level='info')
 
 
 class GradientDescent(Optimizer):
@@ -84,7 +88,7 @@ class GradientDescent(Optimizer):
 
             it += 1
 
-            print(f"Iteration {it} with objective error = {func_container[-1]}")
+            logger.info(f"Iteration {it} with objective error = {func_container[-1]}")
 
         success = True if it < max_iter else False
 
@@ -164,7 +168,7 @@ class StochasticGradientDescent(Optimizer):
             func_container.append(self._function(param, data))
             func_diff = abs(func_container[-1] - func_container[-2])
 
-            print(f"Epoc {epoc} with objective error = {func_container[-1]}")
+            logger.info(f"Epoc {epoc} with objective error = {func_container[-1]}")
 
             epoc += 1
 

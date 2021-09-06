@@ -1,5 +1,6 @@
 import unittest
 import pandas as pd
+import warnings
 from sklearn import datasets
 from sklearn.linear_model import LinearRegression
 from StatisticalLearning.ModelAssessment.ModelScore import ModelScore
@@ -9,6 +10,9 @@ from StatisticalLearning.LinearModel.ShrinkageRegression import PCRegression, Pa
 class TEST_PCRegression(unittest.TestCase):
 
     def setUp(self):
+
+        warnings.filterwarnings('ignore', category=FutureWarning)
+
         X, y = datasets.load_diabetes(return_X_y=True)
         self._X, self._y = pd.DataFrame(X), pd.Series(y)
 

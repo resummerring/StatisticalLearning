@@ -1,4 +1,5 @@
 import unittest
+import warnings
 import numpy as np
 import pandas as pd
 from sklearn import datasets
@@ -11,6 +12,9 @@ from StatisticalLearning.ModelAssessment.CrossValidation import ValidationSet, K
 class TEST_CrossValidation(unittest.TestCase):
 
     def setUp(self):
+
+        warnings.filterwarnings('ignore', category=FutureWarning)
+
         X, y = datasets.load_diabetes(return_X_y=True)
         self._X, self._y = pd.DataFrame(X), pd.Series(y)
         self._lr = LinearRegression(fit_intercept=True, copy_X=True)

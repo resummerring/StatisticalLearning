@@ -1,4 +1,5 @@
 import unittest
+import warnings
 import numpy as np
 import pandas as pd
 from statsmodels import api
@@ -10,6 +11,9 @@ from StatisticalLearning.LinearModel.LinearRegression import LinearRegression
 class TEST_LinearRegression(unittest.TestCase):
 
     def setUp(self):
+
+        warnings.filterwarnings('ignore', category=FutureWarning)
+
         X, y = datasets.load_diabetes(return_X_y=True)
         self._X, self._y = pd.DataFrame(X), pd.Series(y)
         self._lr = linear_model.LinearRegression(fit_intercept=True, copy_X=True).fit(X, y)

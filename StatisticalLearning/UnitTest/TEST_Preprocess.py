@@ -1,10 +1,14 @@
 import unittest
+import warnings
 import numpy as np
 import pandas as pd
 from StatisticalLearning.Preprocess import Preprocessor
 
 
 class TEST_Preprocess(unittest.TestCase):
+
+    def setUp(self):
+        warnings.filterwarnings('ignore', category=FutureWarning)
 
     def test_normalize(self):
         df = pd.DataFrame(2 + 3 * np.random.randn(1000, 10))

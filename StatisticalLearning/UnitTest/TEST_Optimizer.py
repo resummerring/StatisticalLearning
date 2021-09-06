@@ -1,10 +1,14 @@
 import unittest
+import warnings
 import numpy as np
 import pandas as pd
 from StatisticalLearning.Optimization.GradientOptimizer import GradientDescent
 
 
 class TEST_GradientDescent(unittest.TestCase):
+
+    def setUp(self):
+        warnings.filterwarnings('ignore', category=FutureWarning)
 
     def test_simple_function(self):
 

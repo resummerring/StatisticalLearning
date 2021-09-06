@@ -1,4 +1,5 @@
 import unittest
+import warnings
 import pandas as pd
 from sklearn import datasets
 from StatisticalLearning.ModelSelection.Stepwise import LinearRegressionStepwiseForward, \
@@ -8,6 +9,9 @@ from StatisticalLearning.ModelSelection.Stepwise import LinearRegressionStepwise
 class TEST_LinearRegressionStepwiseForward(unittest.TestCase):
 
     def setUp(self):
+
+        warnings.filterwarnings('ignore', category=FutureWarning)
+
         X, y = datasets.load_diabetes(return_X_y=True)
         X, y = pd.DataFrame(X), pd.Series(y)
         self._lr = LinearRegressionStepwiseForward(X, y)

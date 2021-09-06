@@ -1,4 +1,5 @@
 import unittest
+import warnings
 import pandas as pd
 from sklearn import datasets
 from StatisticalLearning.ModelSelection.BestSubset import LinearRegressionBestSubset
@@ -7,6 +8,9 @@ from StatisticalLearning.ModelSelection.BestSubset import LinearRegressionBestSu
 class TEST_LinearRegressionBestSubset(unittest.TestCase):
 
     def setUp(self):
+
+        warnings.filterwarnings('ignore', category=FutureWarning)
+
         X, y = datasets.load_diabetes(return_X_y=True)
         X, y = pd.DataFrame(X), pd.Series(y)
         self._lr = LinearRegressionBestSubset(X, y)

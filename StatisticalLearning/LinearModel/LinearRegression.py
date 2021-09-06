@@ -166,7 +166,7 @@ class LinearRegression:
                 raise ValueError("SVD failed: unsuccessful SVD decomposition.")
 
         else:
-            raise NotImplementedError
+            raise NotImplementedError("No implementation for the input solver.")
 
         residual_var = np.sum(np.square(np.array(X) @ coefs - y)) / (X.shape[0] - X.shape[1])
         try:
