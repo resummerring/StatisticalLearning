@@ -23,6 +23,10 @@ class TEST_LinearRegression(unittest.TestCase):
         self.assertAlmostEqual(lr.intercept, self._lr.intercept_)
         self.assertAlmostEqual(np.linalg.norm(lr.coef - self._lr.coef_, ord=2), 0)
 
+        pred_sklearn = self._lr.predict(self._X)
+        pred_lr = lr.predict(self._X)
+        self.assertAlmostEqual(np.linalg.norm(pred_sklearn - pred_lr), 0, places=8)
+
         lr = LinearRegression(fit_intercept=False).fit(self._X, self._y, solver='NormalEquation')
         self.assertEqual(lr.intercept, None)
         self.assertAlmostEqual(np.linalg.norm(lr.coef - self._lr.coef_, ord=2), 0)

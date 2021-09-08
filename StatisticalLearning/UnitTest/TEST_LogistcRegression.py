@@ -34,6 +34,10 @@ class TEST_LogisticRegression(unittest.TestCase):
         self.assertTrue(optimal_error <= self._optimal_error)
         self.assertAlmostEqual(optimal_error, 0.14870229, places=5)
 
+        pred_sklearn = self._lr.predict(self._X)
+        pred_lr = lr.predict(self._X).apply(lambda x: 1 if x >= 0.5 else 0)
+        self.assertTrue((pred_lr - pd.Series(pred_sklearn.squeeze())).abs().sum() <= 20)
+
     def test_stochastic_gradient_descent(self):
         lr = LogisticRegression(fit_intercept=True)
         lr = lr.fit(self._X, self._y, solver='StochasticGradientDescent',
