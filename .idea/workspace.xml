@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="added stochastic gradient descent for logistic regression and added logging tool">
+    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="added linear discriminant analysis with 2-class unittest">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/StatisticalLearning/LinearModel/Classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/LinearModel/Classification.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_LinearRegression.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_LinearRegression.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_LogistcRegression.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_LogistcRegression.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_LinearDiscriminantAnalysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_LinearDiscriminantAnalysis.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,28 +51,7 @@
       <recent name="C:\Users\15300\PycharmProjects\pythonProject\StatisticalLearning\UnitTest" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for TEST_LinearDiscriminantAnalysis.TEST_LinearDiscriminantAnalysis.test_binary_classification">
-    <configuration name="Logger" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="pythonProject" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/StatisticalLearning/Toolbox" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/StatisticalLearning/Toolbox/Logger.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python tests.Python tests in TEST_LinearDiscriminantAnalysis.py">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -109,7 +87,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for TEST_LinearRegression.TEST_LinearRegression.test_normal_equation" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for TEST_LinearDiscriminantAnalysis.TEST_LinearDiscriminantAnalysis.test_multiple_classification" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -119,7 +97,21 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;TEST_LinearRegression.TEST_LinearRegression.test_normal_equation&quot;" />
+      <option name="_new_target" value="&quot;TEST_LinearDiscriminantAnalysis.TEST_LinearDiscriminantAnalysis.test_multiple_classification&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for TEST_LinearDiscriminantAnalysis.TEST_LinearDiscriminantAnalysis.test_transform" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/StatisticalLearning/UnitTest" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;TEST_LinearDiscriminantAnalysis.TEST_LinearDiscriminantAnalysis.test_transform&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -137,7 +129,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests in TEST_LogistcRegression.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests in TEST_LinearDiscriminantAnalysis.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -147,17 +139,17 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_LogistcRegression.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_LinearDiscriminantAnalysis.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests in TEST_LinearDiscriminantAnalysis.py" />
+        <item itemvalue="Python tests.Python tests for TEST_LinearDiscriminantAnalysis.TEST_LinearDiscriminantAnalysis.test_transform" />
+        <item itemvalue="Python tests.Python tests for TEST_LinearDiscriminantAnalysis.TEST_LinearDiscriminantAnalysis.test_multiple_classification" />
         <item itemvalue="Python tests.Python tests for TEST_LinearDiscriminantAnalysis.TEST_LinearDiscriminantAnalysis.test_binary_classification" />
         <item itemvalue="Python tests.Python tests for TEST_LogistcRegression.TEST_LogisticRegression.test_gradient_descent" />
-        <item itemvalue="Python tests.Python tests for TEST_LinearRegression.TEST_LinearRegression.test_normal_equation" />
-        <item itemvalue="Python tests.Python tests in TEST_LogistcRegression.py" />
-        <item itemvalue="Python.Logger" />
       </list>
     </recent_temporary>
   </component>
@@ -261,7 +253,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630946161302</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="added linear discriminant analysis with 2-class unittest">
+      <created>1631112216527</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1631112216527</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -301,7 +300,8 @@
     <MESSAGE value="added t-statistic and p-value for linear regression" />
     <MESSAGE value="added logistic regression and gradient descent solver." />
     <MESSAGE value="added stochastic gradient descent for logistic regression and added logging tool" />
-    <option name="LAST_COMMIT_MESSAGE" value="added stochastic gradient descent for logistic regression and added logging tool" />
+    <MESSAGE value="added linear discriminant analysis with 2-class unittest" />
+    <option name="LAST_COMMIT_MESSAGE" value="added linear discriminant analysis with 2-class unittest" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
