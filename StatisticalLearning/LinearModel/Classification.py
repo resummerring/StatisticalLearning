@@ -72,15 +72,16 @@ class LogisticRegression:
         prob = LogisticRegression.prob(coef, X_train)
         return pd.Series((prob - y_train) * X_train)
 
+    def _clean_up(self):
+        self._coef, self._intercept = None, None
+
     def fit(self, X: pd.DataFrame, y: pd.Series, solver: str = 'GradientDescent', **kwargs) -> LogisticRegression:
 
         """
-        Model fitted by maximum likelihood method
-
-        :param X: pd.DataFrame, n * p data matrix with n = #samples and p = #features
-        :param y: pd.Series, n * 1 label vector
-        :param solver: str, {'GradientDescent', 'StochasticGradientDescent'}
+        Fit method: {'GradientDescent', 'StochasticGradientDescent} solvers are available
         """
+
+        self._clean_up()
 
         if self._fit_intercept:
             X = sm.add_constant(X)
@@ -143,9 +144,7 @@ class LogisticRegression:
     def predict(self, X: pd.DataFrame) -> pd.Series:
 
         """
-        Output the predicted probability P(y = 1 | X)
-
-        :param X: pd.DataFrame, n * p data matrix with n = #samples and p = #features
+        Predict method
         """
 
         if self._coef is not None:
@@ -222,12 +221,16 @@ class LinearDiscriminantAnalysis:
 
         return optimal_class
 
+    def _clean_up(self):
+        self._pi_k, self._mu_k, self._cov, self._cov_inv, self._W = None, None, None, None, None
+
     def fit(self, X: pd.DataFrame, y: pd.Series) -> LinearDiscriminantAnalysis:
 
         """
-        :param X: pd.DataFrame, n * p data matrix with n = #samples and p = #features
-        :param y: pd.Series, n * 1 label vector
+        Fit method
         """
+
+        self._clean_up()
 
         # Make sure labels are encoded as integers
         try:
@@ -285,7 +288,7 @@ class LinearDiscriminantAnalysis:
     def predict(self, X: pd.DataFrame) -> pd.Series:
 
         """
-        :param X: pd.DataFrame, n * p data matrix with n = #samples and p = #features
+        Predict method
         """
 
         return X.apply(lambda row: self._find_best_class(row), axis=1)
@@ -299,4 +302,3 @@ class LinearDiscriminantAnalysis:
         """
 
         return X @ self._W
-

@@ -12,7 +12,7 @@ class TEST_LinearRegression(unittest.TestCase):
 
     def setUp(self):
 
-        warnings.filterwarnings('ignore', category=FutureWarning)
+        warnings.filterwarnings('ignore')
 
         X, y = datasets.load_diabetes(return_X_y=True)
         self._X, self._y = pd.DataFrame(X), pd.Series(y)

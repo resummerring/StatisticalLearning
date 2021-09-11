@@ -4,15 +4,7 @@ import random
 import numpy as np
 import pandas as pd
 from abc import ABC, abstractmethod
-from typing import Protocol, Callable, List
-
-
-class Model(Protocol):
-    """
-    A protocol class with fit and predict function required
-    """
-    def fit(self, X: pd.DataFrame, y: pd.Series) -> Model: ...
-    def predict(self, X: pd.DataFrame) -> pd.Series: ...
+from typing import Callable, List
 
 
 class CrossValidation(ABC):
@@ -20,12 +12,12 @@ class CrossValidation(ABC):
     def __init__(self,
                  X: pd.DataFrame,
                  y: pd.Series,
-                 model: Model,
+                 model: object,
                  scorer: Callable):
         """
        :param X: pd.DataFrame, n * p where n = #samples and p = #features
        :param y: pd.Series, n * 1 where n = #samples
-       :param model: Model, a model with fit() and predict() implementation
+       :param model: object, a model with fit() and predict() implementation
        :param scorer: Callable, a callable to compute score from y_true and y_pred
        """
 
@@ -70,12 +62,12 @@ class ValidationSet(CrossValidation):
     def __init__(self,
                  X: pd.DataFrame,
                  y: pd.Series,
-                 model: Model,
+                 model: object,
                  scorer: Callable):
 
         super().__init__(X, y, model, scorer)
 
-    def validate(self, train_ratio: float = 0.7, seed: int = 0) -> ValidationSet:
+    def validate(self, train_ratio: float = 0.7, seed: int = 0, **kwargs) -> ValidationSet:
 
         """
         :param train_ratio: float: proportion to be included in training set
@@ -93,7 +85,7 @@ class ValidationSet(CrossValidation):
         X_train, y_train = self._X.iloc[train_index, :], self._y.iloc[train_index]
         X_test, y_test = self._X.iloc[test_index, :], self._y.iloc[test_index]
 
-        model_trained = self._model.fit(X_train, y_train)
+        model_trained = self._model.fit(X_train, y_train, **kwargs)
         pred = model_trained.predict(X_test)
         self._scores.append(self._scorer(y_test, pred))
         self._mean_score = np.mean(self._scores)
@@ -122,12 +114,12 @@ class LeaveOneOut(CrossValidation):
     def __init__(self,
                  X: pd.DataFrame,
                  y: pd.Series,
-                 model: Model,
+                 model: object,
                  scorer: Callable):
 
         super().__init__(X, y, model, scorer)
 
-    def validate(self) -> LeaveOneOut:
+    def validate(self, **kwargs) -> LeaveOneOut:
 
         n_samples = self._X.shape[0]
         full_candidates = set(range(n_samples))
@@ -138,7 +130,7 @@ class LeaveOneOut(CrossValidation):
             X_train, y_train = self._X.iloc[train_index, :], self._y.iloc[train_index]
             X_test, y_test = pd.DataFrame(self._X.iloc[test_index, :]).T, self._y[test_index]
 
-            model_trained = self._model.fit(X_train, y_train)
+            model_trained = self._model.fit(X_train, y_train, **kwargs)
             pred = model_trained.predict(X_test).squeeze()
             self._scores.append(self._scorer(y_test, pred))
 
@@ -164,17 +156,19 @@ class KFoldValidation(CrossValidation):
     def __init__(self,
                  X: pd.DataFrame,
                  y: pd.Series,
-                 model: Model,
+                 model: object,
                  scorer: Callable):
 
         super().__init__(X, y, model, scorer)
 
-    def validate(self, k: int = 5, seed: int = 0) -> KFoldValidation:
+    def validate(self, k: int = 5, seed: int = 0, **kwargs) -> KFoldValidation:
 
         """
         :param k: int, number of folds to use in cross validation
         :param seed: int, random number generator seed
         """
+
+        random.seed(seed)
 
         n_samples = self._X.shape[0]
         full_candidates = set(np.arange(n_samples))
@@ -187,7 +181,7 @@ class KFoldValidation(CrossValidation):
             X_train, y_train = self._X.iloc[train_index, :], self._y.iloc[train_index]
             X_test, y_test = self._X.iloc[test_index, :], self._y.iloc[test_index]
 
-            model_trained = self._model.fit(X_train, y_train)
+            model_trained = self._model.fit(X_train, y_train, **kwargs)
             pred = model_trained.predict(X_test)
             self._scores.append(self._scorer(y_test, pred))
 

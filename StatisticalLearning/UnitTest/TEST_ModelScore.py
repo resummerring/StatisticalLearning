@@ -11,7 +11,7 @@ class TEST_FitScore(unittest.TestCase):
 
     def setUp(self):
 
-        warnings.filterwarnings('ignore', category=FutureWarning)
+        warnings.filterwarnings('ignore')
 
         self._X = sm.add_constant(pd.DataFrame([[1], [2], [3], [4], [5]]))
         self._y_true = pd.Series([2, 3.2, 4.1, 6.5, 5.5])
@@ -44,3 +44,13 @@ class TEST_FitScore(unittest.TestCase):
 
     def test_aic_linear(self):
         self.assertAlmostEqual(ModelScore.aic_linear(self._y_true, self._y_pred, self._X.shape[1] - 1), self._result.aic)
+
+    def test_confusion_matrix(self):
+        y_pred = pd.Series([1, 1, 1, 0, 0, 1, 0, 0, 0, 1])
+        y_true = pd.Series([1, 1, 0, 0, 0, 1, 1, 0, 0, 0])
+        result = ModelScore.confusion_matrix(y_true, y_pred)
+        self.assertEqual(result['accuracy'], 0.7)
+        self.assertEqual(result['precision'], 0.6)
+        self.assertEqual(result['recall'], 0.75)
+        self.assertEqual(result['F_score'], 2 / 3)
+        self.assertEqual(result['confusion_matrix'], [[3, 1], [2, 4]])

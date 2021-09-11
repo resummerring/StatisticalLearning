@@ -35,10 +35,15 @@ class PCRegression:
         self._n_components = n_components
         self._lr, self._pca = None, None
 
+    def _clean_up(self):
+        self._lr, self._pca = None, None
+
     def fit(self, X: pd.DataFrame, y: pd.Series) -> PCRegression:
         """
-        Fit a linear regression model using principal components
+        Fit method
         """
+
+        self._clean_up()
 
         X_scaled, _, _ = Preprocessor.normalize(X)
         self._pca = PCA(n_components=self._n_components)
@@ -48,7 +53,7 @@ class PCRegression:
 
     def predict(self, X_test) -> pd.Series:
         """
-        Predict y based on given X data
+        Predict method
         """
 
         if self._pca is None or self._lr is None:
@@ -93,7 +98,15 @@ class PartialLeastSquare:
         self._n_components = n_components
         self._B, self._mean, self._std = None, None, None
 
+    def _clean_up(self):
+        self._B, self._mean, self._std = None, None, None
+
     def fit(self, X: pd.DataFrame, y: pd.Series) -> PartialLeastSquare:
+        """
+        Fit method
+        """
+
+        self._clean_up()
 
         X_scaled, self._mean, self._std = Preprocessor.normalize(X)
 
@@ -125,10 +138,12 @@ class PartialLeastSquare:
         return self
 
     def predict(self, X_test: pd.DataFrame) -> pd.Series:
+        """
+        Predict method
+        """
 
         if self._B is None:
             raise ValueError("Model has not been fitted yet")
 
         X_test_scaled = (X_test - self._mean) / self._std
         return np.dot(X_test_scaled, self._B).squeeze()
-

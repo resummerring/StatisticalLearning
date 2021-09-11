@@ -8,7 +8,7 @@ from StatisticalLearning.Optimization.GradientOptimizer import GradientDescent
 class TEST_GradientDescent(unittest.TestCase):
 
     def setUp(self):
-        warnings.filterwarnings('ignore', category=FutureWarning)
+        warnings.filterwarnings('ignore')
 
     def test_simple_function(self):
 
@@ -16,7 +16,7 @@ class TEST_GradientDescent(unittest.TestCase):
         def g(x, data=None): return 2 * x - 2
 
         optimizer = GradientDescent(f, g)
-        result = optimizer.solve(x0=0, learning_rate=0.1)
+        result = optimizer.solve(x0=0, learning_rate=0.1, param_tol=1e-10)
         self.assertTrue(result.success)
         self.assertAlmostEqual(result.optimum, 1)
         self.assertAlmostEqual(result.minimum, 0)

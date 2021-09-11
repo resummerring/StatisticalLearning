@@ -3,10 +3,13 @@ import pandas as pd
 from typing import Union, List
 from abc import ABC, abstractmethod
 import statsmodels.api as sm
-from sklearn.metrics import make_scorer
 from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import cross_validate
+from StatisticalLearning.Toolbox.Logger import Logger
 from StatisticalLearning.ModelAssessment.ModelScore import ModelScore
+from StatisticalLearning.ModelAssessment.CrossValidation import KFoldValidation
+
+
+logger = Logger().get_logger(level='info')
 
 
 class StepwiseSelection(ABC):
@@ -60,9 +63,16 @@ class StepwiseSelection(ABC):
 
     def __init__(self,
                  X: pd.DataFrame,
-                 y: pd.Series):
-        self._X = X
-        self._y = y
+                 y: pd.Series,
+                 model: object):
+
+        """
+        :param X: pd.DataFrame, data matrix
+        :param y: pd.Series, response vector
+        :param model: object, model with fit() and prediction() implementation
+        """
+
+        self._X, self._y, self._model = X, y, model
 
     def _null_model_score(self) -> float:
 
@@ -72,8 +82,9 @@ class StepwiseSelection(ABC):
 
         lr = LinearRegression(fit_intercept=False, copy_X=False)
         intercept = pd.DataFrame(data=np.ones((self._X.shape[0], 1)))
-        scorer = make_scorer(ModelScore.adjusted_r_square, nbr_features=0, greater_is_better=True)
-        best_score = cross_validate(estimator=lr, X=intercept, y=self._y, cv=10, scoring=scorer)['test_score'].mean()
+        scorer = ModelScore.make_scorer(ModelScore.adjusted_r_square, nbr_features=0)
+        validator = KFoldValidation(X=intercept, y=self._y, model=lr, scorer=scorer)
+        best_score = validator.validate().mean_score
 
         return best_score
 
@@ -100,7 +111,7 @@ class StepwiseSelection(ABC):
         raise NotImplementedError
 
 
-class LinearRegressionStepwiseForward(StepwiseSelection):
+class StepwiseForward(StepwiseSelection):
 
     """
     Stepwise forward selection method using linear regression as estimator
@@ -108,10 +119,11 @@ class LinearRegressionStepwiseForward(StepwiseSelection):
 
     def __init__(self,
                  X: pd.DataFrame,
-                 y: pd.Series):
-        super().__init__(X, y)
+                 y: pd.Series,
+                 model: object):
+        super().__init__(X, y, model)
 
-    def find_best_model_next_step(self, last_best_index: List[int]) -> Union[List[int], None]:
+    def find_best_model_next_step(self, last_best_index: List[int], **kwargs) -> Union[List[int], None]:
 
         full_candidates = set(list(range(self._X.shape[1])))
         candidates = full_candidates - set(last_best_index) if last_best_index else full_candidates
@@ -122,8 +134,8 @@ class LinearRegressionStepwiseForward(StepwiseSelection):
 
             included = last_best_index + [index]
             subset = self._X.iloc[:, included]
-            lr = LinearRegression(fit_intercept=True, copy_X=True).fit(subset, self._y)
-            mean_squared_error = ModelScore.mean_square_error(self._y, lr.predict(subset))
+            model = self._model.fit(subset, self._y, **kwargs)
+            mean_squared_error = ModelScore.mean_square_error(self._y, model.predict(subset))
 
             if mean_squared_error < best_mse:
                 best_index = included
@@ -131,20 +143,20 @@ class LinearRegressionStepwiseForward(StepwiseSelection):
 
         return sorted(best_index)
 
-    def find_best_model(self) -> Union[List[int], None]:
+    def find_best_model(self, **kwargs) -> Union[List[int], None]:
 
-        lr = LinearRegression(fit_intercept=True, copy_X=True)
         global_best_score, global_best_index, local_best_index = self._null_model_score(), None, []
-        print(f'Best model with intercept only: Adj-R2 = {global_best_score}')
+        logger.info(f'Best model with intercept only: Adj-R2 = {global_best_score}')
 
         for k in range(self._X.shape[1]):
 
-            local_best_index = self.find_best_model_next_step(local_best_index)
+            local_best_index = self.find_best_model_next_step(local_best_index, **kwargs)
             subset = self._X.iloc[:, local_best_index]
-            scorer = make_scorer(ModelScore.adjusted_r_square, nbr_features=subset.shape[1], greater_is_better=True)
-            local_best_score = cross_validate(estimator=lr, X=subset, y=self._y, cv=10,
-                                              scoring=scorer)['test_score'].mean()
-            print(f'Best model with {k + 1} features: Adj-R2 = {local_best_score}, best index = {local_best_index}')
+            scorer = ModelScore.make_scorer(ModelScore.adjusted_r_square, nbr_features=subset.shape[1])
+            validator = KFoldValidation(X=subset, y=self._y, model=self._model, scorer=scorer)
+            local_best_score = validator.validate(**kwargs).mean_score
+            logger.info(f'Best model with {k + 1} features: Adj-R2 = {local_best_score}, '
+                        f'best index = {local_best_index}')
 
             if local_best_score > global_best_score:
                 global_best_index = local_best_index
@@ -153,7 +165,7 @@ class LinearRegressionStepwiseForward(StepwiseSelection):
         return global_best_index
 
 
-class LinearRegressionStepwiseBackward(StepwiseSelection):
+class StepwiseBackward(StepwiseSelection):
 
     """
     Stepwise backward selection method using linear regression as estimator
@@ -161,10 +173,11 @@ class LinearRegressionStepwiseBackward(StepwiseSelection):
 
     def __init__(self,
                  X: pd.DataFrame,
-                 y: pd.Series):
-        super().__init__(X, y)
+                 y: pd.Series,
+                 model: object):
+        super().__init__(X, y, model)
 
-    def find_best_model_next_step(self, last_best_index: List[int]) -> Union[List[int], None]:
+    def find_best_model_next_step(self, last_best_index: List[int], **kwargs) -> Union[List[int], None]:
 
         full_candidates = set(last_best_index)
         best_index, best_mse = None, float('inf')
@@ -173,8 +186,8 @@ class LinearRegressionStepwiseBackward(StepwiseSelection):
 
             included = list(full_candidates - {index})
             subset = self._X.iloc[:, included]
-            lr = LinearRegression(fit_intercept=True, copy_X=True).fit(subset, self._y)
-            mean_squared_error = ModelScore.mean_square_error(self._y, lr.predict(subset))
+            model = self._model.fit(subset, self._y, **kwargs)
+            mean_squared_error = ModelScore.mean_square_error(self._y, model.predict(subset))
 
             if mean_squared_error < best_mse:
                 best_index = included
@@ -182,38 +195,36 @@ class LinearRegressionStepwiseBackward(StepwiseSelection):
 
         return sorted(best_index)
 
-    def find_best_model(self) -> Union[List[int], None]:
+    def find_best_model(self, **kwargs) -> Union[List[int], None]:
 
-        lr = LinearRegression(fit_intercept=True, copy_X=True)
-
-        scorer = make_scorer(ModelScore.adjusted_r_square, nbr_features=self._X.shape[1], greater_is_better=True)
-        global_best_score = cross_validate(estimator=lr, X=self._X, y=self._y, cv=10,
-                                           scoring=scorer)['test_score'].mean()
+        scorer = ModelScore.make_scorer(ModelScore.adjusted_r_square, nbr_features=self._X.shape[1])
+        validator = KFoldValidation(X=self._X, y=self._y, model=self._model, scorer=scorer)
+        global_best_score = validator.validate(**kwargs).mean_score
         global_best_index, local_best_index = list(range(self._X.shape[1])), list(range(self._X.shape[1]))
-        print(f'Best model with {self._X.shape[1]} features: Adj-R2 = {global_best_score}')
+        logger.info(f'Best model with {self._X.shape[1]} features: Adj-R2 = {global_best_score}')
 
         for k in range(self._X.shape[1] - 1, 0, -1):
 
-            local_best_index = self.find_best_model_next_step(local_best_index)
+            local_best_index = self.find_best_model_next_step(local_best_index, **kwargs)
             subset = self._X.iloc[:, local_best_index]
-            scorer = make_scorer(ModelScore.adjusted_r_square, nbr_features=subset.shape[1], greater_is_better=True)
-            local_best_score = cross_validate(estimator=lr, X=subset, y=self._y, cv=10,
-                                              scoring=scorer)['test_score'].mean()
-            print(f'Best model with {k} features: Adj-R2 = {local_best_score}, best index = {local_best_index}')
+            scorer = ModelScore.make_scorer(ModelScore.adjusted_r_square, nbr_features=subset.shape[1])
+            validator = KFoldValidation(X=subset, y=self._y, model=self._model, scorer=scorer)
+            local_best_score = validator.validate(**kwargs).mean_score
+            logger.info(f'Best model with {k} features: Adj-R2 = {local_best_score}, best index = {local_best_index}')
 
             if local_best_score > global_best_score:
                 global_best_index = local_best_index
                 global_best_score = local_best_score
 
         local_best_score = self._null_model_score()
-        print(f'Best model with intercept only: Adj-R2 = {local_best_score}')
+        logger.info(f'Best model with intercept only: Adj-R2 = {local_best_score}')
         if local_best_score > global_best_score:
             global_best_index = local_best_index
 
         return global_best_index
 
 
-class LinearRegressionStepwiseBidirectional(StepwiseSelection):
+class StepwiseBidirectional(StepwiseSelection):
 
     """
     Stepwise bi-directional selection method using linear regression as estimator
@@ -221,10 +232,11 @@ class LinearRegressionStepwiseBidirectional(StepwiseSelection):
 
     def __init__(self,
                  X: pd.DataFrame,
-                 y: pd.Series):
-        super().__init__(X, y)
+                 y: pd.Series,
+                 model: object):
+        super().__init__(X, y, model)
 
-    def find_best_model_next_step(self, last_best_index: List[int]) -> Union[List[int], None]:
+    def find_best_model_next_step(self, last_best_index: List[int], **kwargs) -> Union[List[int], None]:
 
         full_candidates = set(list(range(self._X.shape[1])))
         candidates = full_candidates - set(last_best_index) if last_best_index else full_candidates
@@ -236,8 +248,8 @@ class LinearRegressionStepwiseBidirectional(StepwiseSelection):
 
             included = last_best_index + [index]
             subset = self._X.iloc[:, included]
-            lr = LinearRegression(fit_intercept=True, copy_X=True).fit(subset, self._y)
-            mean_squared_error = ModelScore.mean_square_error(self._y, lr.predict(subset))
+            model = self._model.fit(subset, self._y, **kwargs)
+            mean_squared_error = ModelScore.mean_square_error(self._y, model.predict(subset))
 
             if mean_squared_error < best_mse:
                 best_index = included
@@ -249,19 +261,18 @@ class LinearRegressionStepwiseBidirectional(StepwiseSelection):
         keep_index = [i - 1 for i in range(1, subset.shape[1]) if result.pvalues[i] <= 0.05]
         return sorted(list(np.array(best_index)[keep_index]))
 
-    def find_best_model(self) -> Union[List[int], None]:
+    def find_best_model(self, **kwargs) -> Union[List[int], None]:
 
-        lr = LinearRegression(fit_intercept=True, copy_X=True)
         global_best_score, global_best_index, local_best_index = self._null_model_score(), None, []
 
         while True:
 
-            local_best_index_next = self.find_best_model_next_step(local_best_index)
+            local_best_index_next = self.find_best_model_next_step(local_best_index, **kwargs)
 
             subset = self._X.iloc[:, local_best_index]
-            scorer = make_scorer(ModelScore.adjusted_r_square, nbr_features=subset.shape[1], greater_is_better=True)
-            local_best_score = cross_validate(estimator=lr, X=subset, y=self._y, cv=10,
-                                              scoring=scorer)['test_score'].mean()
+            scorer = ModelScore.make_scorer(ModelScore.adjusted_r_square, nbr_features=subset.shape[1])
+            validator = KFoldValidation(X=subset, y=self._y, model=self._model, scorer=scorer)
+            local_best_score = validator.validate(**kwargs).mean_score
 
             if local_best_score > global_best_score:
                 global_best_index = local_best_index
@@ -271,4 +282,3 @@ class LinearRegressionStepwiseBidirectional(StepwiseSelection):
                 return global_best_index
 
             local_best_index = local_best_index_next
-

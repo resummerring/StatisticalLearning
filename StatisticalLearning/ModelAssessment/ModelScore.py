@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from typing import Union
+from typing import Union, Callable
 
 
 class ModelScore:
@@ -10,7 +10,7 @@ class ModelScore:
     """
 
     @staticmethod
-    def sum_square_error(y_true: Union[pd.Series, np.ndarray, float],
+    def sum_square_error(y_true: Union[pd.Series, np.ndarray],
                          y_pred: Union[pd.Series, np.ndarray, float]) -> float:
         """
         SSR = sum[(y_true[i] - y_pred[i]) ** 2]
@@ -18,7 +18,7 @@ class ModelScore:
         return np.sum(np.square(y_true - y_pred)).squeeze()
 
     @staticmethod
-    def mean_square_error(y_true: Union[pd.Series, np.ndarray, float],
+    def mean_square_error(y_true: Union[pd.Series, np.ndarray],
                           y_pred: Union[pd.Series, np.ndarray, float]) -> float:
         """
         MSE =  mean[(y_true[i] - y_pred[i]) ** 2]
@@ -26,7 +26,7 @@ class ModelScore:
         return np.mean(np.square(y_true - y_pred)).squeeze()
 
     @staticmethod
-    def r_square(y_true: Union[pd.Series, np.ndarray, float],
+    def r_square(y_true: Union[pd.Series, np.ndarray],
                  y_pred: Union[pd.Series, np.ndarray, float]) -> float:
         """
         SST = sum[(y_true[i]) - mean(y_true) ** 2]
@@ -37,7 +37,7 @@ class ModelScore:
         return 1 - ssr / sst
 
     @staticmethod
-    def adjusted_r_square(y_true: Union[pd.Series, np.ndarray, float],
+    def adjusted_r_square(y_true: Union[pd.Series, np.ndarray],
                           y_pred: Union[pd.Series, np.ndarray, float],
                           nbr_features: int) -> float:
         """
@@ -47,7 +47,7 @@ class ModelScore:
         return 1 - (1 - ModelScore.r_square(y_true, y_pred)) * (nbr_samples - 1) / (nbr_samples - nbr_features - 1)
 
     @staticmethod
-    def aic_linear(y_true: Union[pd.Series, np.ndarray, float],
+    def aic_linear(y_true: Union[pd.Series, np.ndarray],
                    y_pred: Union[pd.Series, np.ndarray, float],
                    nbr_features: int) -> float:
         """
@@ -59,3 +59,44 @@ class ModelScore:
         ssr = ModelScore.sum_square_error(y_true, y_pred)
         return nbr_samples * (np.log(2 * np.pi) + np.log(ssr) - np.log(nbr_samples)) \
             + 2 * (nbr_features + 1) + nbr_samples
+
+    @staticmethod
+    def confusion_matrix(y_true: Union[pd.Series, np.ndarray],
+                         y_pred: Union[pd.Series, np.ndarray]) -> dict:
+
+        """
+        Accuracy = (TP + TN) / (TP + TN + FP + FN)
+        Precision = TP / (TP + FP)
+        Recall = TP / (TP + FN)
+        F1-Score = 2 / (1 / Precision + 1 / Recall)
+        """
+
+        result = {}
+
+        TP, TN, FP, FN = 0, 0, 0, 0
+        for actual, pred in zip(y_true, y_pred):
+            if actual == 1 and pred == 1:
+                TP += 1
+            elif actual == 0 and pred == 0:
+                TN += 1
+            elif actual == 1 and pred == 0:
+                FN += 1
+            elif actual == 0 and pred == 1:
+                FP += 1
+            else:
+                raise ValueError('Only binary classification is accepted.')
+
+        result['accuracy'] = (TP + TN) / (TP + TN + FP + FN)
+        result['precision'] = TP / (TP + FP)
+        result['recall'] = TP / (TP + FN)
+        result['F_score'] = 2 / (1 / result['precision'] + 1 / result['recall'])
+        result['confusion_matrix'] = [[TP, FN], [FP, TN]]
+
+        return result
+
+    @staticmethod
+    def make_scorer(func: Callable, **kwargs):
+        def wrapper(y_true, y_pred):
+            return func(y_true, y_pred, **kwargs)
+        return wrapper
+

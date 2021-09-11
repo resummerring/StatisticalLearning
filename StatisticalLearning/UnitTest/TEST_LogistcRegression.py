@@ -12,7 +12,7 @@ class TEST_LogisticRegression(unittest.TestCase):
 
     def setUp(self):
 
-        warnings.filterwarnings('ignore', category=FutureWarning)
+        warnings.filterwarnings('ignore')
 
         X, y = datasets.load_breast_cancer(return_X_y=True)
         self._X, _, _ = Preprocessor.normalize(pd.DataFrame(X).iloc[:, :5])
