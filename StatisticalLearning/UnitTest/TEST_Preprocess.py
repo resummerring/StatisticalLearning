@@ -36,7 +36,7 @@ class TEST_Preprocess(unittest.TestCase):
     def test_dummy_variables(self):
         df = pd.DataFrame([['male', 'red', 1], ['female', 'orange', 2], ['male', 'orange', 3], ['male', 'yellow', 4]],
                           columns=['sex', 'color', 'age'])
-        df = Preprocessor.add_dummy_variables(df, ['sex', 'color'])
+        df = Preprocessor.encode_dummy_variables(df, ['sex', 'color'])
         expected = pd.DataFrame([[1, 1, 1, 0], [2, 0, 0, 1], [3, 1, 0, 1], [4, 1, 0, 0]],
                                 columns=['age', 'sex_male', 'color_red', 'color_orange'])
         self.assertTrue(df.equals(expected))

@@ -44,7 +44,7 @@ class Preprocessor:
         return df_out, df_max, df_min
 
     @staticmethod
-    def add_dummy_variables(df: pd.DataFrame, cols: List[str]) -> pd.DataFrame:
+    def encode_dummy_variables(df: pd.DataFrame, cols: List[str]) -> pd.DataFrame:
         """
         Transform categorical variable with k levels into k - 1 dummy variables
 
