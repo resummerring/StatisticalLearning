@@ -23,6 +23,17 @@ class LogisticRegression:
         self._fit_intercept = fit_intercept
         self._coef, self._intercept = None, None
 
+    # ====================
+    #  Private
+    # ====================
+
+    def _clean_up(self):
+        self._coef, self._intercept = None, None
+
+    # ====================
+    #  Public
+    # ====================
+
     @property
     def coef(self) -> Union[pd.Series, np.ndarray, None]:
         return self._coef
@@ -71,9 +82,6 @@ class LogisticRegression:
         X_train, y_train = data
         prob = LogisticRegression.prob(coef, X_train)
         return pd.Series((prob - y_train) * X_train)
-
-    def _clean_up(self):
-        self._coef, self._intercept = None, None
 
     def fit(self, X: pd.DataFrame, y: pd.Series, solver: str = 'GradientDescent', **kwargs) -> LogisticRegression:
 
@@ -193,7 +201,11 @@ class LinearDiscriminantAnalysis:
         self._pi_k, self._mu_k, self._cov, self._cov_inv = None, None, None, None
         self._W, self._n_components = None, n_components
 
-    def prob(self, x: pd.Series, mu: pd.Series, pi: float) -> float:
+    # ====================
+    #  Private
+    # ====================
+
+    def _prob(self, x: pd.Series, mu: pd.Series, pi: float) -> float:
 
         """
         Find the probability that the test point belongs to a particular class
@@ -215,7 +227,7 @@ class LinearDiscriminantAnalysis:
 
         optimal_score, optimal_class = float('-inf'), None
         for k in self._pi_k.keys():
-            prob_k = self.prob(x, self._mu_k[k], self._pi_k[k])
+            prob_k = self._prob(x, self._mu_k[k], self._pi_k[k])
             if prob_k >= optimal_score:
                 optimal_score, optimal_class = prob_k, k
 
@@ -224,6 +236,10 @@ class LinearDiscriminantAnalysis:
     def _clean_up(self):
         self._pi_k, self._mu_k, self._cov, self._cov_inv, self._W = None, None, None, None, None
 
+    # ====================
+    #  Public
+    # ====================
+
     def fit(self, X: pd.DataFrame, y: pd.Series) -> LinearDiscriminantAnalysis:
 
         """
@@ -231,6 +247,8 @@ class LinearDiscriminantAnalysis:
         """
 
         self._clean_up()
+
+        X, y = X.reset_index(drop=True), y.reset_index(drop=True)
 
         # Make sure labels are encoded as integers
         try:

@@ -44,6 +44,10 @@ class BestSubset:
         """
         self._X, self._y, self._model = X, y, model
 
+    # ====================
+    #  Private
+    # ====================
+
     def _null_model_score(self) -> float:
 
         """
@@ -57,6 +61,10 @@ class BestSubset:
         best_score = validator.validate().mean_score
 
         return best_score
+
+    # ====================
+    #  Public
+    # ====================
 
     def find_best_model_with_fixed_size(self, k: int, **kwargs) -> Union[List[int], None]:
 

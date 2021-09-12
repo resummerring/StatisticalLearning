@@ -25,6 +25,10 @@ class CrossValidation(ABC):
         self._model, self._scorer = model, scorer
         self._scores, self._mean_score = [], None
 
+    # ====================
+    #  Public
+    # ====================
+
     @abstractmethod
     def validate(self, **kwargs):
         """
@@ -66,6 +70,10 @@ class ValidationSet(CrossValidation):
                  scorer: Callable):
 
         super().__init__(X, y, model, scorer)
+
+    # ====================
+    #  Public
+    # ====================
 
     def validate(self, train_ratio: float = 0.7, seed: int = 0, **kwargs) -> ValidationSet:
 
@@ -119,6 +127,10 @@ class LeaveOneOut(CrossValidation):
 
         super().__init__(X, y, model, scorer)
 
+    # ====================
+    #  Public
+    # ====================
+
     def validate(self, **kwargs) -> LeaveOneOut:
 
         n_samples = self._X.shape[0]
@@ -160,6 +172,10 @@ class KFoldValidation(CrossValidation):
                  scorer: Callable):
 
         super().__init__(X, y, model, scorer)
+
+    # ====================
+    #  Public
+    # ====================
 
     def validate(self, k: int = 5, seed: int = 0, **kwargs) -> KFoldValidation:
 

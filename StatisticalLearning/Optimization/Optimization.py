@@ -34,6 +34,10 @@ class OptimizationResult:
         self._minimum_history = minimum_history
         self._it = it
 
+    # ====================
+    #  Public
+    # ====================
+
     @property
     def success(self) -> bool:
         return self._success
@@ -75,6 +79,10 @@ class Optimizer(ABC):
         """
 
         self._function = function
+
+    # ====================
+    #  Public
+    # ====================
 
     @abstractmethod
     def solve(self, **kwargs) -> OptimizationResult:

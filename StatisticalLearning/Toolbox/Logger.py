@@ -13,6 +13,10 @@ class Logger:
     A convenient logger tool to provide standard logging interface
     """
 
+    # ====================
+    #  Public
+    # ====================
+
     @ staticmethod
     def get_logger(level: str = 'info',
                    log_format: str = _LOG_FORMAT,

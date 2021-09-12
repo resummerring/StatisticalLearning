@@ -55,7 +55,7 @@ class TEST_LinearRegression(unittest.TestCase):
                                                       learning_rate=0.2, max_iter=1000, x0=pd.Series([0, 1, 2]))
 
         self.assertAlmostEqual(lr.intercept, sklearn_lr.intercept_, places=5)
-        self.assertAlmostEqual(np.max([abs(sklearn_lr.coef_[i] - lr.coef.iloc[i]) for i in [0, 1]]), 0, places=5)
+        self.assertAlmostEqual(np.max([abs(sklearn_lr.coef_[i] - lr.coef.iloc[i]) for i in [0, 1]]), 0, places=4)
 
     def test_stochastic_gradient_descent(self):
 

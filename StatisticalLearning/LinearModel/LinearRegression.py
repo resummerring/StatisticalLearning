@@ -21,6 +21,26 @@ class LinearRegression:
         self._coef_t_stat, self._intercept_t_stat = None, None
         self._coef_p_value, self._intercept_p_value = None, None
 
+    # ====================
+    #  Private
+    # ====================
+
+    def _clean_up(self):
+
+        """
+        The clean function will be applied whenever the fit function is utilized.
+        All private variables will be reset to None.
+        """
+
+        self._coef, self._intercept = None, None
+        self._degrees_freedom = None
+        self._coef_t_stat, self._intercept_t_stat = None, None
+        self._coef_p_value, self._intercept_p_value = None, None
+
+    # ====================
+    #  Public
+    # ====================
+
     @property
     def coef(self) -> Union[pd.Series, np.ndarray, None]:
         return self._coef
@@ -48,18 +68,6 @@ class LinearRegression:
     @property
     def intercept_p_value(self) -> Union[float, None]:
         return self._intercept_p_value
-
-    def _clean_up(self):
-
-        """
-        The clean function will be applied whenever the fit function is utilized.
-        All private variables will be reset to None.
-        """
-
-        self._coef, self._intercept = None, None
-        self._degrees_freedom = None
-        self._coef_t_stat, self._intercept_t_stat = None, None
-        self._coef_p_value, self._intercept_p_value = None, None
 
     @staticmethod
     def func(coef: pd.Series, data: Tuple[pd.DataFrame, pd.Series]) -> float:

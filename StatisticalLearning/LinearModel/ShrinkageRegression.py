@@ -35,8 +35,16 @@ class PCRegression:
         self._n_components = n_components
         self._lr, self._pca = None, None
 
+    # ====================
+    #  Private
+    # ====================
+
     def _clean_up(self):
         self._lr, self._pca = None, None
+
+    # ====================
+    #  Public
+    # ====================
 
     def fit(self, X: pd.DataFrame, y: pd.Series) -> PCRegression:
         """
@@ -44,6 +52,8 @@ class PCRegression:
         """
 
         self._clean_up()
+
+        X, y = X.reset_index(drop=True), y.reset_index(drop=True)
 
         X_scaled, _, _ = Preprocessor.normalize(X)
         self._pca = PCA(n_components=self._n_components)
@@ -98,8 +108,16 @@ class PartialLeastSquare:
         self._n_components = n_components
         self._B, self._mean, self._std = None, None, None
 
+    # ====================
+    #  Private
+    # ====================
+
     def _clean_up(self):
         self._B, self._mean, self._std = None, None, None
+
+    # ====================
+    #  Public
+    # ====================
 
     def fit(self, X: pd.DataFrame, y: pd.Series) -> PartialLeastSquare:
         """
@@ -107,6 +125,8 @@ class PartialLeastSquare:
         """
 
         self._clean_up()
+
+        X, y = X.reset_index(drop=True), y.reset_index(drop=True)
 
         X_scaled, self._mean, self._std = Preprocessor.normalize(X)
 

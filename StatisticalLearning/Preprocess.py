@@ -4,6 +4,10 @@ from typing import Tuple, Union, List
 
 class Preprocessor:
 
+    # ====================
+    #  Public
+    # ====================
+
     @staticmethod
     def normalize(df: Union[pd.DataFrame, pd.Series],
                   scale_mean: bool = True,

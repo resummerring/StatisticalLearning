@@ -9,6 +9,10 @@ class ModelScore:
     Collection of different metrics to measure the fit quality of a statistical model
     """
 
+    # ====================
+    #  Public
+    # ====================
+
     @staticmethod
     def sum_square_error(y_true: Union[pd.Series, np.ndarray],
                          y_pred: Union[pd.Series, np.ndarray, float]) -> float:

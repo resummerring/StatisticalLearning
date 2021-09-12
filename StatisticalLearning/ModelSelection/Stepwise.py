@@ -74,6 +74,10 @@ class StepwiseSelection(ABC):
 
         self._X, self._y, self._model = X, y, model
 
+    # ====================
+    #  Private
+    # ====================
+
     def _null_model_score(self) -> float:
 
         """
@@ -87,6 +91,10 @@ class StepwiseSelection(ABC):
         best_score = validator.validate().mean_score
 
         return best_score
+
+    # ====================
+    #  Public
+    # ====================
 
     @abstractmethod
     def find_best_model_next_step(self, last_best_index: List[int]) -> Union[List[int], None]:
@@ -122,6 +130,10 @@ class StepwiseForward(StepwiseSelection):
                  y: pd.Series,
                  model: object):
         super().__init__(X, y, model)
+
+    # ====================
+    #  Public
+    # ====================
 
     def find_best_model_next_step(self, last_best_index: List[int], **kwargs) -> Union[List[int], None]:
 
@@ -176,6 +188,10 @@ class StepwiseBackward(StepwiseSelection):
                  y: pd.Series,
                  model: object):
         super().__init__(X, y, model)
+
+    # ====================
+    #  Public
+    # ====================
 
     def find_best_model_next_step(self, last_best_index: List[int], **kwargs) -> Union[List[int], None]:
 
@@ -235,6 +251,10 @@ class StepwiseBidirectional(StepwiseSelection):
                  y: pd.Series,
                  model: object):
         super().__init__(X, y, model)
+
+    # ====================
+    #  Public
+    # ====================
 
     def find_best_model_next_step(self, last_best_index: List[int], **kwargs) -> Union[List[int], None]:
 

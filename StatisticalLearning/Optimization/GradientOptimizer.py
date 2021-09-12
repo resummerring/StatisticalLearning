@@ -40,6 +40,10 @@ class GradientDescent(Optimizer):
         super().__init__(function)
         self._gradient = gradient
 
+    # ====================
+    #  Public
+    # ====================
+
     def solve(self,
               x0: Union[float, np.ndarray, pd.Series],
               learning_rate: float = 0.1,
@@ -124,6 +128,10 @@ class StochasticGradientDescent(Optimizer):
 
         super().__init__(function)
         self._gradient = gradient
+
+    # ====================
+    #  Public
+    # ====================
 
     def solve(self,
               x0: Union[float, np.ndarray, pd.Series],
