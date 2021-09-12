@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="refactored  previous files;&#10;added bagging method and unittest">
+    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="added gradient boosting and unittest">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/StatisticalLearning/Ensemble/Bagging.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/Ensemble/Bagging.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_Bagging.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_Bagging.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StatisticalLearning/LinearModel/LinearRegression.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/LinearModel/LinearRegression.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StatisticalLearning/LinearModel/ShrinkageRegression.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/LinearModel/ShrinkageRegression.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StatisticalLearning/Preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/Transform/Preprocess.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_LogistcRegression.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_LogistcRegression.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_Preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_Preprocess.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,13 +49,14 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\15300\PycharmProjects\pythonProject\StatisticalLearning\Transform" />
       <recent name="C:\Users\15300\PycharmProjects\pythonProject\StatisticalLearning\ModelAssessment" />
       <recent name="C:\Users\15300\PycharmProjects\pythonProject\StatisticalLearning\LinearModel" />
       <recent name="C:\Users\15300\PycharmProjects\pythonProject\StatisticalLearning" />
       <recent name="C:\Users\15300\PycharmProjects\pythonProject\StatisticalLearning\UnitTest" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for TEST_Boosting.TEST_Boosting.test_decision_tree">
+  <component name="RunManager" selected="Python tests.Python tests for TEST_Boosting.TEST_Boosting.test_linear_regression">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -145,8 +150,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for TEST_Boosting.TEST_Boosting.test_decision_tree" />
         <item itemvalue="Python tests.Python tests for TEST_Boosting.TEST_Boosting.test_linear_regression" />
+        <item itemvalue="Python tests.Python tests for TEST_Boosting.TEST_Boosting.test_decision_tree" />
         <item itemvalue="Python tests.Python tests for TEST_Bagging.TEST_Bagging.test_sklearn_linear_regression" />
         <item itemvalue="Python tests.Python tests in TEST_Bagging.py" />
         <item itemvalue="Python tests.Python tests for TEST_Bagging.TEST_Bagging.test_sklearn_decision_tree" />
@@ -281,7 +286,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631457020846</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="added gradient boosting and unittest">
+      <created>1631467422371</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1631467422371</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -325,7 +337,8 @@
     <MESSAGE value="added dimension reduction technique for linear discriminant analysis and multi-class unit test" />
     <MESSAGE value="refactored model selection and model assessment methods so that they can accept any object with fit() and predict() implementation" />
     <MESSAGE value="refactored  previous files;&#10;added bagging method and unittest" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored  previous files;&#10;added bagging method and unittest" />
+    <MESSAGE value="added gradient boosting and unittest" />
+    <option name="LAST_COMMIT_MESSAGE" value="added gradient boosting and unittest" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

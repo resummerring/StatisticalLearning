@@ -102,6 +102,8 @@ class LinearRegression:
     def fit(self, X: pd.DataFrame, y: pd.Series, solver: str = 'GradientDescent', **kwargs) -> LinearRegression:
 
         """
+        Fit method
+
         :param X: pd.DataFrame, n * p data matrix with n = #samples and p = #features
         :param y: pd.Series, n * 1 label vector
         :param solver: str, {'GradientDescent', 'StochasticGradientDescent', 'NormalEquation', SVD'}
@@ -199,6 +201,8 @@ class LinearRegression:
     def predict(self, X: pd.DataFrame) -> pd.Series:
 
         """
+        Predict method
+
         :param X: pd.DataFrame, n * p data matrix with n = #samples and p = #features
         """
 

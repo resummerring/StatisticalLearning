@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 from sklearn.decomposition import PCA
 from sklearn.linear_model import LinearRegression
-from StatisticalLearning.Preprocess import Preprocessor
+from StatisticalLearning.Transform.Preprocess import Preprocessor
 
 
 class PCRegression:

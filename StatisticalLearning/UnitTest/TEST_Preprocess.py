@@ -2,7 +2,7 @@ import unittest
 import warnings
 import numpy as np
 import pandas as pd
-from StatisticalLearning.Preprocess import Preprocessor
+from StatisticalLearning.Transform.Preprocess import Preprocessor
 
 
 class TEST_Preprocess(unittest.TestCase):
