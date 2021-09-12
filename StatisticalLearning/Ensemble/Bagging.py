@@ -3,13 +3,14 @@ from __future__ import annotations
 import copy
 import random
 import pandas as pd
+from typing import Union
 from StatisticalLearning.ModelAssessment.ModelScore import ModelScore
 
 
 class BaggingRegressor:
 
     """
-    Bagging algorithm:
+    Bagging Algorithm:
         (1) Resample n different training datasets by bootstrapping
             (samples are sampled with replacement and features are sample without replacement)
         (2) Build n different estimators based on the above n different training set
@@ -27,14 +28,14 @@ class BaggingRegressor:
     def __init__(self,
                  estimator: object,
                  n_estimator: int = 100,
-                 max_samples: float = 1.0,
-                 max_features: float = 1.0):
+                 max_samples: Union[int, float] = 1.0,
+                 max_features: Union[int, float] = 1.0):
 
         """
         :param estimator: object, model with fit() and predict() implementation
         :param n_estimator: int, # estimators to use for averaging the prediction
-        :param max_samples: float, max_sample * total # samples will be used to train each estimator
-        :param max_features: float, max_features * total # features will be used to train each estimator
+        :param max_samples: Union[int, float], determine #samples to be used to train each estimator
+        :param max_features: Union[int, float], determine #features to be used to train each estimator
         """
 
         self._estimator, self._n_estimator = estimator, n_estimator
@@ -58,9 +59,15 @@ class BaggingRegressor:
 
         random.seed(seed)
 
+        nbr_samples, nbr_features = self._max_samples, self._max_features
+
+        if isinstance(self._max_samples, float):
+            nbr_samples = int(self._max_samples * total_samples)
+        if isinstance(self._max_features, float):
+            nbr_features = int(self._max_features * total_features)
+
         # Determine #samples and #features to train each estimator
-        sample_backet, nbr_samples = tuple(range(total_samples)), int(self._max_samples * total_samples)
-        feature_backet, nbr_features = tuple(range(total_features)), int(self._max_features * total_features)
+        sample_backet, feature_backet = tuple(range(total_samples)), tuple(range(total_features))
 
         # bootstrap samples with replacement and features without replacement
         self._sample_container = [random.choices(sample_backet, k=nbr_samples) for _ in range(self._n_estimator)]

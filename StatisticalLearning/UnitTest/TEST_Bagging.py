@@ -21,7 +21,7 @@ class TEST_Bagging(unittest.TestCase):
     def test_sklearn_linear_regression(self):
 
         lr = LinearRegression(fit_intercept=True, copy_X=True)
-        bagging = BaggingRegressor(estimator=lr, n_estimator=500)
+        bagging = BaggingRegressor(estimator=lr, n_estimator=500, max_features=1.0, max_samples=500)
         bagging = bagging.fit(self._X, self._y)
         prediction = bagging.predict(self._X)
 
@@ -55,9 +55,3 @@ class TEST_Bagging(unittest.TestCase):
         # Decision tree can handle nonlinear pattern and give lower train error
         self.assertTrue(bagging.out_of_bag_error > 3000)
         self.assertTrue(ModelScore.mean_square_error(self._y, prediction) <= 1000)
-
-
-
-
-
-

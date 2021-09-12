@@ -1,21 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="refactored model selection and model assessment methods so that they can accept any object with fit() and predict() implementation">
+    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="refactored  previous files;&#10;added bagging method and unittest">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/StatisticalLearning/Ensemble/Bagging.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/Ensemble/Bagging.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/LinearModel/Classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/LinearModel/Classification.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/LinearModel/LinearRegression.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/LinearModel/LinearRegression.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/LinearModel/ShrinkageRegression.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/LinearModel/ShrinkageRegression.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/ModelAssessment/CrossValidation.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/ModelAssessment/CrossValidation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/ModelAssessment/ModelScore.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/ModelAssessment/ModelScore.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/ModelSelection/BestSubset.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/ModelSelection/BestSubset.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/ModelSelection/Stepwise.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/ModelSelection/Stepwise.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/Optimization/GradientOptimizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/Optimization/GradientOptimizer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/Optimization/Optimization.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/Optimization/Optimization.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/Preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/Preprocess.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/Toolbox/Logger.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/Toolbox/Logger.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_LinearRegression.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_LinearRegression.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_Bagging.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_Bagging.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +51,7 @@
       <recent name="C:\Users\15300\PycharmProjects\pythonProject\StatisticalLearning\UnitTest" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for TEST_Bagging.TEST_Bagging.test_homemade_linear_regression">
+  <component name="RunManager" selected="Python tests.Python tests for TEST_Boosting.TEST_Boosting.test_decision_tree">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -84,7 +73,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for TEST_Bagging.TEST_Bagging.test_homemade_linear_regression" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for TEST_Bagging.TEST_Bagging.test_sklearn_decision_tree" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -94,7 +83,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;TEST_Bagging.TEST_Bagging.test_homemade_linear_regression&quot;" />
+      <option name="_new_target" value="&quot;TEST_Bagging.TEST_Bagging.test_sklearn_decision_tree&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -112,7 +101,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for TEST_LinearRegression.TEST_LinearRegression.test_gradient_descent" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for TEST_Boosting.TEST_Boosting.test_decision_tree" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -122,11 +111,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;TEST_LinearRegression.TEST_LinearRegression.test_gradient_descent&quot;" />
+      <option name="_new_target" value="&quot;TEST_Boosting.TEST_Boosting.test_decision_tree&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests in TEST_SubsetSelection.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for TEST_Boosting.TEST_Boosting.test_linear_regression" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -136,11 +125,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_SubsetSelection.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <option name="_new_target" value="&quot;TEST_Boosting.TEST_Boosting.test_linear_regression&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests in UnitTest" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests in TEST_Bagging.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -150,17 +139,17 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/StatisticalLearning/UnitTest&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_Bagging.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for TEST_Bagging.TEST_Bagging.test_homemade_linear_regression" />
+        <item itemvalue="Python tests.Python tests for TEST_Boosting.TEST_Boosting.test_decision_tree" />
+        <item itemvalue="Python tests.Python tests for TEST_Boosting.TEST_Boosting.test_linear_regression" />
         <item itemvalue="Python tests.Python tests for TEST_Bagging.TEST_Bagging.test_sklearn_linear_regression" />
-        <item itemvalue="Python tests.Python tests in UnitTest" />
-        <item itemvalue="Python tests.Python tests for TEST_LinearRegression.TEST_LinearRegression.test_gradient_descent" />
-        <item itemvalue="Python tests.Python tests in TEST_SubsetSelection.py" />
+        <item itemvalue="Python tests.Python tests in TEST_Bagging.py" />
+        <item itemvalue="Python tests.Python tests for TEST_Bagging.TEST_Bagging.test_sklearn_decision_tree" />
       </list>
     </recent_temporary>
   </component>
@@ -285,7 +274,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631366993413</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="refactored  previous files;&#10;added bagging method and unittest">
+      <created>1631457020846</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1631457020846</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -328,7 +324,8 @@
     <MESSAGE value="added linear discriminant analysis with 2-class unittest" />
     <MESSAGE value="added dimension reduction technique for linear discriminant analysis and multi-class unit test" />
     <MESSAGE value="refactored model selection and model assessment methods so that they can accept any object with fit() and predict() implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored model selection and model assessment methods so that they can accept any object with fit() and predict() implementation" />
+    <MESSAGE value="refactored  previous files;&#10;added bagging method and unittest" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactored  previous files;&#10;added bagging method and unittest" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
