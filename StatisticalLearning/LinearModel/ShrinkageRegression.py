@@ -2,9 +2,12 @@ from __future__ import annotations
 
 import numpy as np
 import pandas as pd
+import statsmodels.api as sm
+from typing import Tuple
 from sklearn.decomposition import PCA
 from sklearn.linear_model import LinearRegression
 from StatisticalLearning.Transform.Preprocess import Preprocessor
+from StatisticalLearning.Optimization.GradientOptimizer import GradientDescent, StochasticGradientDescent
 
 
 class PCRegression:
@@ -167,3 +170,163 @@ class PartialLeastSquare:
 
         X_test_scaled = (X_test - self._mean) / self._std
         return np.dot(X_test_scaled, self._B).squeeze()
+
+
+class RidgeRegression:
+
+    def __init__(self, fit_intercept: bool = True):
+        self._fit_intercept = fit_intercept
+        self._coef, self._intercept = None, None
+
+    # ====================
+    #  Private
+    # ===================
+
+    def _clean_up(self):
+        self._coef, self._intercept = None, None
+
+    # ====================
+    #  Public
+    # ====================
+
+    @staticmethod
+    def func(coef: pd.Series, data: Tuple[pd.DataFrame, pd.Series], shrinkage: float) -> float:
+        """
+        Objective function for gradient descent and stochastic gradient descent
+        """
+
+        X_train, y_train = data
+        X_train = np.array(X_train)
+        return ((y_train - X_train @ coef).T @ (y_train - X_train @ coef)
+                + shrinkage * np.linalg.norm(coef, ord=2) ** 2) / X_train.shape[0]
+
+    @staticmethod
+    def grad_gd(coef: pd.Series, data: Tuple[pd.DataFrame, pd.Series], shrinkage: float) -> pd.Series:
+        """
+        Gradient for gradient descent
+        """
+
+        X_train, y_train = data
+        X_train = np.array(X_train)
+        return (X_train.T @ (X_train @ coef - y_train) + shrinkage * coef) / X_train.shape[0]
+
+    @staticmethod
+    def grad_sgd(coef: pd.Series, data: Tuple[pd.Series, float], shrinkage: float) -> pd.Series:
+        """
+        Gradient for stochastic gradient descent
+        """
+
+        X_train, y_train = data
+        X_train = np.array(X_train).reshape(1, -1)
+        return pd.Series((X_train.T @ (X_train @ coef - y_train) + shrinkage * coef))
+
+    def fit(self, X: pd.DataFrame, y: pd.Series, solver: str, shrinkage: float = 0, **kwargs) -> RidgeRegression:
+        """
+        Fit method
+
+        :param X: pd.DataFrame, n * p data matrix with n = #samples and p = #features
+        :param y: pd.Series, n * 1 label vector
+        :param solver: str, {'GradientDescent', 'StochasticGradientDescent', 'NormalEquation', SVD'}
+        :param shrinkage: float, L2 regularization weight
+        """
+
+        self._clean_up()
+
+        X, y = X.reset_index(drop=True), y.reset_index(drop=True)
+
+        if self._fit_intercept:
+            X = sm.add_constant(X)
+
+        coefs = pd.Series(np.zeros(X.shape[1]))
+
+        if solver == 'NormalEquation':
+
+            identity = np.identity(X.shape[1])
+            try:
+                coefs = pd.Series(np.linalg.inv(X.T @ X + shrinkage * identity) @ X.T @ y)
+            except np.linalg.LinAlgError:
+                try:
+                    coefs = pd.Seires(np.linalg.pinv(X.T @ X + shrinkage * identity) @ X.T @ y)
+                except np.linalg.LinAlgError as e:
+                    raise ValueError("Normal equation failed: singular data matrix.")
+
+        elif solver == 'GradientDescent':
+
+            optimizer = GradientDescent(self.func, self.grad_gd)
+            x0 = kwargs['x0'] if 'x0' in kwargs else coefs
+            learning_rate = kwargs['learning_rate'] if 'learning_rate' in kwargs else 0.1
+            momentum = kwargs['momentum'] if 'momentum' in kwargs else 0.8
+            func_tol = kwargs['func_tol'] if 'func_tol' in kwargs else 1e-8
+            param_tol = kwargs['param_tol'] if 'param_tol' in kwargs else 1e-8
+            max_iter = kwargs['max_iter'] if 'max_iter' in kwargs else 1000
+            result = optimizer.solve(x0=x0,
+                                     learning_rate=learning_rate,
+                                     momentum=momentum,
+                                     func_tol=func_tol,
+                                     param_tol=param_tol,
+                                     max_iter=max_iter,
+                                     data=(X, y))
+
+            if result.success:
+                coefs = result.optimum
+            else:
+                raise ValueError("Gradient descent failed.")
+
+        elif solver == 'StochasticGradientDescent':
+
+            optimizer = StochasticGradientDescent(self.func, self.grad_sgd)
+            x0 = kwargs['x0'] if 'x0' in kwargs else coefs
+            learning_rate = kwargs['learning_rate'] if 'learning_rate' in kwargs else 0.1
+            func_tol = kwargs['func_tol'] if 'func_tol' in kwargs else 1e-8
+            max_epoc = kwargs['max_epoc'] if 'max_epoc' in kwargs else 100
+            result = optimizer.solve(x0=x0,
+                                     learning_rate=learning_rate,
+                                     func_tol=func_tol,
+                                     max_epoc=max_epoc,
+                                     data=(X, y))
+
+            if result.success:
+                coefs = result.optimum
+            else:
+                raise ValueError('Stochastic gradient descent failed.')
+
+        elif solver == 'SVD':
+
+            try:
+                U, S, Vt = np.linalg.svd(X, full_matrices=False)
+                diag = np.diag([s / (s ** 2 + shrinkage) for s in S])
+                coefs = pd.Series(Vt.T @ diag @ U.T @ y)
+            except np.linalg.LinAlgError:
+                raise ValueError("SVD failed: unsuccessful SVD decomposition.")
+
+        else:
+            raise NotImplementedError("No implementation for the input solver.")
+
+        if self._fit_intercept:
+            self._coef, self._intercept = coefs.iloc[1:].reset_index(drop=True), coefs.iloc[0]
+        else:
+            self._coef = coefs
+
+        return self
+
+    def predict(self, X: pd.DataFrame) -> pd.Series:
+
+        """
+        Predict method
+
+        :param X: pd.DataFrame, n * p data matrix with n = #samples and p = #features
+        """
+
+        if self._coef is not None:
+            if self._fit_intercept:
+                return np.array(X) @ self._coef + self._intercept
+            else:
+                return np.array(X) @ self._coef
+        else:
+            raise ValueError('Model has not been fitted yet.')
+
+
+
+
+
+

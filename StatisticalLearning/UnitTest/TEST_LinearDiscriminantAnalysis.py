@@ -3,7 +3,7 @@ import warnings
 import pandas as pd
 from sklearn import datasets
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis as LDA
-from StatisticalLearning.LinearModel.Classification import LinearDiscriminantAnalysis
+from StatisticalLearning.LinearModel.LinearClassification import LinearDiscriminantAnalysis
 
 
 class TEST_LinearDiscriminantAnalysis(unittest.TestCase):

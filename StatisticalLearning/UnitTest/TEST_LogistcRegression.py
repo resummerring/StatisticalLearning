@@ -5,7 +5,7 @@ import statsmodels.api as sm
 from sklearn import datasets
 from sklearn import linear_model
 from StatisticalLearning.Transform.Preprocess import Preprocessor
-from StatisticalLearning.LinearModel.Classification import LogisticRegression
+from StatisticalLearning.LinearModel.LinearClassification import LogisticRegression
 
 
 class TEST_LogisticRegression(unittest.TestCase):

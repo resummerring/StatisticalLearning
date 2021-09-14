@@ -260,7 +260,7 @@ class BaggingClassifier:
             oob_predictions[i] = oob_predictions[i].fillna(prediction)
 
         oob_prediction = oob_predictions.mode(axis=1, dropna=True).squeeze()
-        assert(isinstance(oob_prediction, pd.Series), "Multiple values returned for majority vote")
+        assert isinstance(oob_prediction, pd.Series) , "Multiple values returned for majority vote"
         self._out_of_bag_metric = ModelScore.confusion_matrix(y, oob_prediction)
 
         return self
@@ -278,5 +278,5 @@ class BaggingClassifier:
             predictions.append(self._trained_models[i].predict(X_test))
 
         result = pd.DataFrame(predictions).mode(axis=0, dropna=True).squeeze()
-        assert(isinstance(result, pd.Series), "Multiple values returned for majority vote")
+        assert isinstance(result, pd.Series), "Multiple values returned for majority vote"
         return result

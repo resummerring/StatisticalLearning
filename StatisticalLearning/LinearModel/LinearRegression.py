@@ -126,7 +126,10 @@ class LinearRegression:
             try:
                 coefs = pd.Series(np.linalg.inv(X.T @ X) @ X.T @ y)
             except np.linalg.LinAlgError:
-                raise ValueError("Normal equation failed: singular data matrix.")
+                try:
+                    coefs = pd.Series(np.linalg.pinv(X.T @ X) @ X.T @ y)
+                except np.linalg.LinAlgError:
+                    raise ValueError("Normal equation failed: singular data matrix.")
 
         elif solver == 'GradientDescent':
 
