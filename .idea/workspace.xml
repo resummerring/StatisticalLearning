@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="added kernel class with njit and unittest">
+    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="added Ridge regression and unit tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/Ensemble/Bagging.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/Ensemble/Bagging.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/LinearModel/Classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/LinearModel/LinearClassification.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/LinearModel/LinearRegression.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/LinearModel/LinearRegression.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/LinearModel/ShrinkageRegression.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/LinearModel/ShrinkageRegression.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_LinearDiscriminantAnalysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_LinearDiscriminantAnalysis.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_LogistcRegression.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_LogistcRegression.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_ShrinkageRegression.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_ShrinkageRegression.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +50,7 @@
       <recent name="C:\Users\15300\PycharmProjects\pythonProject\StatisticalLearning\UnitTest" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests in TEST_Bagging.py">
+  <component name="RunManager" selected="Python tests.Python tests for TEST_SVMClassifier.TEST_SVMClassifier.test_linear_kernel_synthetic">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -79,7 +72,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for TEST_Kernel.TEST_Kernel.test_njit" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for TEST_SVMClassifier.TEST_SVMClassifier.test_linear_kernel" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -89,11 +82,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;TEST_Kernel.TEST_Kernel.test_njit&quot;" />
+      <option name="_new_target" value="&quot;TEST_SVMClassifier.TEST_SVMClassifier.test_linear_kernel&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for TEST_ShrinkageRegression.TEST_RidgeRegression.test_SVD" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for TEST_SVMClassifier.TEST_SVMClassifier.test_linear_kernel_synthetic" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -103,11 +96,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;TEST_ShrinkageRegression.TEST_RidgeRegression.test_SVD&quot;" />
+      <option name="_new_target" value="&quot;TEST_SVMClassifier.TEST_SVMClassifier.test_linear_kernel_synthetic&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for TEST_ShrinkageRegression.TEST_RidgeRegression.test_partial_least_square" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for TEST_SVMClassifier.TEST_SVMClassifier.test_without_kernel" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -117,7 +110,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;TEST_ShrinkageRegression.TEST_RidgeRegression.test_partial_least_square&quot;" />
+      <option name="_new_target" value="&quot;TEST_SVMClassifier.TEST_SVMClassifier.test_without_kernel&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -151,11 +144,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests for TEST_SVMClassifier.TEST_SVMClassifier.test_linear_kernel_synthetic" />
+        <item itemvalue="Python tests.Python tests for TEST_SVMClassifier.TEST_SVMClassifier.test_linear_kernel" />
+        <item itemvalue="Python tests.Python tests for TEST_SVMClassifier.TEST_SVMClassifier.test_without_kernel" />
         <item itemvalue="Python tests.Python tests in TEST_Bagging.py" />
         <item itemvalue="Python tests.Python tests in UnitTest" />
-        <item itemvalue="Python tests.Python tests for TEST_ShrinkageRegression.TEST_RidgeRegression.test_SVD" />
-        <item itemvalue="Python tests.Python tests for TEST_ShrinkageRegression.TEST_RidgeRegression.test_partial_least_square" />
-        <item itemvalue="Python tests.Python tests for TEST_Kernel.TEST_Kernel.test_njit" />
       </list>
     </recent_temporary>
   </component>
@@ -315,7 +308,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631574430493</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="added Ridge regression and unit tests">
+      <created>1631582575524</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1631582575524</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -363,7 +363,8 @@
     <MESSAGE value="added bagging classifier" />
     <MESSAGE value="added distance measure class with njit decorator and unittest" />
     <MESSAGE value="added kernel class with njit and unittest" />
-    <option name="LAST_COMMIT_MESSAGE" value="added kernel class with njit and unittest" />
+    <MESSAGE value="added Ridge regression and unit tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="added Ridge regression and unit tests" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
