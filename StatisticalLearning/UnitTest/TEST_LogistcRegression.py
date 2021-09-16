@@ -4,7 +4,7 @@ import pandas as pd
 import statsmodels.api as sm
 from sklearn import datasets
 from sklearn import linear_model
-from StatisticalLearning.Transform.Preprocess import Preprocessor
+from StatisticalLearning.Feature.Univariate import UnivariateBuilder
 from StatisticalLearning.LinearModel.LinearClassification import LogisticRegression
 
 
@@ -15,7 +15,10 @@ class TEST_LogisticRegression(unittest.TestCase):
         warnings.filterwarnings('ignore')
 
         X, y = datasets.load_breast_cancer(return_X_y=True)
-        self._X, _, _ = Preprocessor.normalize(pd.DataFrame(X).iloc[:, :5])
+        self._X = pd.DataFrame(X).iloc[:, :5]
+        for col in self._X.columns:
+            self._X[col], _ = UnivariateBuilder(self._X[col]).standardize().build()
+
         self._y = pd.Series(y).apply(lambda num: float(num))
         self._lr = linear_model.LogisticRegression(fit_intercept=True).fit(self._X, self._y)
         self._coef, self._intercept = self._lr.coef_, self._lr.intercept_

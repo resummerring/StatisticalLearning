@@ -3,8 +3,7 @@ import warnings
 import numpy as np
 import pandas as pd
 from sklearn import datasets
-from sklearn.svm import SVC
-from StatisticalLearning.Transform.Kernel import Kernel
+from StatisticalLearning.Feature.Kernel import Kernel
 from StatisticalLearning.LinearModel.SVMClassification import SVMClassifier
 
 
@@ -27,5 +26,3 @@ class TEST_SVMClassifier(unittest.TestCase):
 
         self.assertTrue(pred.equals(pd.Series([-1, -1, -1, 1, 1, 1, -1])))
         self.assertTrue(svm.sv_index == [0, 2, 3, 6])
-
-

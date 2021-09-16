@@ -6,7 +6,6 @@ import statsmodels.api as sm
 from typing import Tuple
 from sklearn.decomposition import PCA
 from sklearn.linear_model import LinearRegression
-from StatisticalLearning.Transform.Preprocess import Preprocessor
 from StatisticalLearning.Optimization.GradientOptimizer import GradientDescent, StochasticGradientDescent
 
 
@@ -58,9 +57,8 @@ class PCRegression:
 
         X, y = X.reset_index(drop=True), y.reset_index(drop=True)
 
-        X_scaled, _, _ = Preprocessor.normalize(X)
         self._pca = PCA(n_components=self._n_components)
-        X_reduced = self._pca.fit_transform(X_scaled)
+        X_reduced = self._pca.fit_transform(X)
         self._lr = LinearRegression(fit_intercept=True, copy_X=True).fit(X_reduced, y)
         return self
 
@@ -72,8 +70,7 @@ class PCRegression:
         if self._pca is None or self._lr is None:
             raise ValueError("Model hasn't been fitted yet")
 
-        X_test_scaled, _, _ = Preprocessor.normalize(X_test)
-        X_reduced_test = self._pca.transform(X_test_scaled)
+        X_reduced_test = self._pca.transform(X_test)
         return self._lr.predict(X_reduced_test)
 
 
@@ -109,14 +106,14 @@ class PartialLeastSquare:
         """
 
         self._n_components = n_components
-        self._B, self._mean, self._std = None, None, None
+        self._B = None
 
     # ====================
     #  Private
     # ====================
 
     def _clean_up(self):
-        self._B, self._mean, self._std = None, None, None
+        self._B = None
 
     # ====================
     #  Public
@@ -131,13 +128,11 @@ class PartialLeastSquare:
 
         X, y = X.reset_index(drop=True), y.reset_index(drop=True)
 
-        X_scaled, self._mean, self._std = Preprocessor.normalize(X)
-
         # Loading matrix
         W, P, q = [], [], []
 
         # Initialization
-        X_k, y = np.array(X_scaled), np.array(y).reshape(-1, 1)
+        X_k, y = np.array(X), np.array(y).reshape(-1, 1)
         for k in range(self._n_components):
 
             w_k = (X_k.T @ y) / np.linalg.norm(X_k.T @ y, ord=2)
@@ -168,8 +163,7 @@ class PartialLeastSquare:
         if self._B is None:
             raise ValueError("Model has not been fitted yet")
 
-        X_test_scaled = (X_test - self._mean) / self._std
-        return np.dot(X_test_scaled, self._B).squeeze()
+        return np.dot(X_test, self._B).squeeze()
 
 
 class RidgeRegression:
@@ -247,7 +241,7 @@ class RidgeRegression:
             except np.linalg.LinAlgError:
                 try:
                     coefs = pd.Seires(np.linalg.pinv(X.T @ X + shrinkage * identity) @ X.T @ y)
-                except np.linalg.LinAlgError as e:
+                except np.linalg.LinAlgError:
                     raise ValueError("Normal equation failed: singular data matrix.")
 
         elif solver == 'GradientDescent':
@@ -324,9 +318,3 @@ class RidgeRegression:
                 return np.array(X) @ self._coef
         else:
             raise ValueError('Model has not been fitted yet.')
-
-
-
-
-
-

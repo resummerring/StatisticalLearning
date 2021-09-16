@@ -1,6 +1,5 @@
 import numpy as np
 from numba import njit
-from StatisticalLearning.Transform.Distance import Distance
 
 
 class Kernel:
@@ -88,5 +87,3 @@ class Kernel:
         assert x.shape == y.shape, "Input should have the same shape."
 
         return np.maximum(np.power(1 - np.power(np.abs(np.sqrt(np.sum(np.square(x - y))) / sigma), 3), 3), 0)
-
-

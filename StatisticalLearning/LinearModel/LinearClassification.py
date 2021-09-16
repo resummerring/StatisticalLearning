@@ -180,7 +180,7 @@ class LinearDiscriminantAnalysis:
         (2) Estimate in-class scatter matrix: cov_w = sum(cov_k) where cov_k is covariance matrix for class k
         (3) Estimate between-class scatter matrix: cov_b = sum(n_k * (mu_k - mu) @ (mu_k - mu).T)
         (4) Compute eigen-decomposition for cov_w^(-1) @ cov_b and take n principal components as W
-        (5) Transform new data matrix as X @ W
+        (5) Feature new data matrix as X @ W
         As dimension reduction technique, LDA seeks to maximize the directions that separate different classes
         It's often used as pre-process technique before any other classifiers are applied
 

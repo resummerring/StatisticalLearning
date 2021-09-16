@@ -3,7 +3,7 @@ import unittest
 import warnings
 import numpy as np
 from scipy.spatial.distance import cosine
-from StatisticalLearning.Transform.Distance import Distance
+from StatisticalLearning.Feature.Distance import Distance
 
 
 class TEST_Distance(unittest.TestCase):

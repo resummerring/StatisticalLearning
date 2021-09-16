@@ -13,7 +13,7 @@ class SVMClassifier:
         (1) Describe classification problem as to maximize the margin distance:
             Hard margin: min ||w|| -> min w.T @ w s.t. y(w.T @ w + b) >= 1
             Soft margin: min w.T @ w + C sum(epsilon) s.t. y(w.T @ w + b) >= 1 - epsilon
-        (2) Transform primary problem to dual problem
+        (2) Feature primary problem to dual problem
         (3) Solve dual problem using quadratic programming
 
     Pros:

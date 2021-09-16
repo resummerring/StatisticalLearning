@@ -1,7 +1,7 @@
 import time
 import unittest
 import numpy as np
-from StatisticalLearning.Transform.Kernel import Kernel
+from StatisticalLearning.Feature.Kernel import Kernel
 
 
 class TEST_Kernel(unittest.TestCase):
