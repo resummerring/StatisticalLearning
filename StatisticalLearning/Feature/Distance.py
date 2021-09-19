@@ -16,6 +16,10 @@ class Distance:
     (5) Cosine distance
     """
 
+    # ====================
+    #  Public
+    # ====================
+
     @staticmethod
     @njit
     def euclidean(x: np.ndarray, y: np.ndarray) -> Union[float, np.ndarray]:

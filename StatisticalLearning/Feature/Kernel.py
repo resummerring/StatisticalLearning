@@ -16,6 +16,10 @@ class Kernel:
     (6) Tri-cube
     """
 
+    # ====================
+    #  Public
+    # ====================
+
     @staticmethod
     @njit
     def linear(x: np.ndarray, y: np.ndarray, c: float = 0) -> float:

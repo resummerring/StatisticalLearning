@@ -4,9 +4,12 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 from typing import Union, Tuple
+from StatisticalLearning.Toolbox.Logger import Logger
+
+logger = Logger().get_logger(level='info')
 
 
-class UnivariateBuilder:
+class UnivariateProcessor:
 
     """
     A convenient preprocessing pipeline based on Builder Pattern to transform input feature
@@ -18,6 +21,7 @@ class UnivariateBuilder:
     (5) Min-Max Scale
     (6) Standardize
     (7) L2 Scale
+    (8) Winsorize
     """
 
     def __init__(self, train: pd.Series, test: Union[pd.Series, None] = None):
@@ -29,9 +33,13 @@ class UnivariateBuilder:
         self._train = train.reset_index(drop=True)
         self._test = test.reset_index(drop=True) if test is not None else None
 
+    # ====================
+    #  Public
+    # ====================
+
     def binarize(self,
                  threshold: float = 0.,
-                 higher_positive: bool = True) -> UnivariateBuilder:
+                 higher_positive: bool = True) -> UnivariateProcessor:
         """
         Convert numeric features/target to 0/1 such that:
             if higher_positive = True, value >= threshold -> 1 else 0
@@ -52,7 +60,7 @@ class UnivariateBuilder:
 
     def quantize(self,
                  bins: Union[np.ndarray, None] = None,
-                 n_quantile: int = 10) -> UnivariateBuilder:
+                 n_quantile: int = 10) -> UnivariateProcessor:
         """
         Divide numeric feature into intervals:
             if bins is given, pre-determined fixed intervals will be used
@@ -73,7 +81,7 @@ class UnivariateBuilder:
 
         return self
 
-    def log_transform(self) -> UnivariateBuilder:
+    def log_transform(self) -> UnivariateProcessor:
         """
         Feature raw vector s.t. x -> log(x) for heavy-tailed distribution
         """
@@ -87,7 +95,7 @@ class UnivariateBuilder:
 
         return self
 
-    def power_transform(self, lmbda: Union[float, None] = None) -> UnivariateBuilder:
+    def power_transform(self, lmbda: Union[float, None] = None) -> UnivariateProcessor:
         """
         Box-Cox transformation to make heavily tailed distribution more like Gaussian:
         x -> x ^ lmbda - 1 / lmbda if lmbda != 0 else log(x)
@@ -107,7 +115,7 @@ class UnivariateBuilder:
 
         return self
 
-    def min_max_scale(self) -> UnivariateBuilder:
+    def min_max_scale(self) -> UnivariateProcessor:
         """
         Scale numeric feature to [0, 1]:
             x = [x - min(x)] / [max(x) - min(x)]
@@ -121,7 +129,7 @@ class UnivariateBuilder:
 
         return self
 
-    def standardize(self) -> UnivariateBuilder:
+    def standardize(self) -> UnivariateProcessor:
         """
         Scale numeric feature to zero mean and unit variance:
             x = [x - mean(x)] / std(x)
@@ -135,7 +143,7 @@ class UnivariateBuilder:
 
         return self
 
-    def l2_scale(self) -> UnivariateBuilder:
+    def l2_scale(self) -> UnivariateProcessor:
         """
         Scale numeric feature to make unit l2 norm:
             x = x / ||x||
@@ -146,6 +154,24 @@ class UnivariateBuilder:
 
         if self._test is not None:
             self._test /= norm
+
+        return self
+
+    def winsorize(self, n_sigma: float) -> UnivariateProcessor:
+        """
+        Remove outliers by setting value < mean - n_sigma * std to mean - n_sigma * std
+        and vale > mean + n_sigma * std to mean + n_sigma * std
+
+        :param n_sigma: float, maximum allowed deviation from mean value
+        """
+
+        mean, std = self._train.mean(), self._train.std()
+        lower, upper = mean - n_sigma * std, mean + n_sigma
+
+        self._train[self._train < lower] = lower
+        self._train[self._train > upper] = upper
+        self._test[self._test < lower] = lower
+        self._test[self._test > upper] = upper
 
         return self
 
