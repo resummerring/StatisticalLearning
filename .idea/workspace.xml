@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="added univariate preprocess builder and unit test">
+    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="refactored univariate preprocessor">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/Feature/Distance.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/Feature/Distance.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/Feature/Kernel.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/Feature/Kernel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/Feature/Univariate.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/Feature/Univariate.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_LogistcRegression.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_LogistcRegression.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_Univariate.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_Univariate.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +50,28 @@
       <recent name="C:\Users\15300\PycharmProjects\pythonProject\StatisticalLearning\UnitTest" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests in UnitTest">
+  <component name="RunManager" selected="Python.RegressionTest">
+    <configuration name="RegressionTest" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/QuantResearch" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/QuantResearch/RegressionTest.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -105,20 +121,6 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for TEST_Univariate.TEST_UnivariateBuilder.test_single" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="pythonProject" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/StatisticalLearning/UnitTest" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;TEST_Univariate.TEST_UnivariateBuilder.test_single&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
     <configuration name="Python tests in TEST_ShrinkageRegression.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -149,11 +151,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.RegressionTest" />
         <item itemvalue="Python tests.Python tests in UnitTest" />
         <item itemvalue="Python tests.Python tests for TEST_LogistcRegression.TEST_LogisticRegression" />
         <item itemvalue="Python tests.Python tests in TEST_ShrinkageRegression.py" />
         <item itemvalue="Python tests.Python tests for TEST_ShrinkageRegression.TEST_PCRegression.test_principal_component_regression" />
-        <item itemvalue="Python tests.Python tests for TEST_Univariate.TEST_UnivariateBuilder.test_single" />
       </list>
     </recent_temporary>
   </component>
@@ -334,7 +336,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631836753888</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="refactored univariate preprocessor">
+      <created>1632065835907</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1632065835907</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -385,7 +394,8 @@
     <MESSAGE value="added Ridge regression and unit tests" />
     <MESSAGE value="added SVM classifier and unit test" />
     <MESSAGE value="added univariate preprocess builder and unit test" />
-    <option name="LAST_COMMIT_MESSAGE" value="added univariate preprocess builder and unit test" />
+    <MESSAGE value="refactored univariate preprocessor" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactored univariate preprocessor" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
