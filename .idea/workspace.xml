@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="refactored univariate preprocessor">
+    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="added regression test and volatility calculation methods">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QuantResearch/RegressionTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/Feature/StatTest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QuantResearch/Volatility.py" beforeDir="false" afterPath="$PROJECT_DIR$/AlphaResearch/Volatility.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,15 +41,16 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File" value="Markdown" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\15300\PycharmProjects\pythonProject\StatisticalLearning\Feature" />
+      <recent name="C:\Users\15300\PycharmProjects\pythonProject\FinancialML" />
       <recent name="C:\Users\15300\PycharmProjects\pythonProject\StatisticalLearning\Transform" />
       <recent name="C:\Users\15300\PycharmProjects\pythonProject\StatisticalLearning\ModelAssessment" />
       <recent name="C:\Users\15300\PycharmProjects\pythonProject\StatisticalLearning\LinearModel" />
-      <recent name="C:\Users\15300\PycharmProjects\pythonProject\StatisticalLearning" />
-      <recent name="C:\Users\15300\PycharmProjects\pythonProject\StatisticalLearning\UnitTest" />
     </key>
   </component>
   <component name="RunManager" selected="Python.RegressionTest">
@@ -343,7 +346,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632065835907</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="added regression test and volatility calculation methods">
+      <created>1632189038229</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1632189038229</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -395,7 +405,8 @@
     <MESSAGE value="added SVM classifier and unit test" />
     <MESSAGE value="added univariate preprocess builder and unit test" />
     <MESSAGE value="refactored univariate preprocessor" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored univariate preprocessor" />
+    <MESSAGE value="added regression test and volatility calculation methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="added regression test and volatility calculation methods" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
