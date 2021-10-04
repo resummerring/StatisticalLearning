@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="added regression test and volatility calculation methods">
+    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="added statistical tests and sequential bootstrapping method">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuantResearch/RegressionTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/Feature/StatTest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuantResearch/Volatility.py" beforeDir="false" afterPath="$PROJECT_DIR$/AlphaResearch/Volatility.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -353,7 +351,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632189038229</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="added statistical tests and sequential bootstrapping method">
+      <created>1633283237801</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1633283237801</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -381,7 +386,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="initialized least square class" />
     <MESSAGE value="added linear least square and unit tests" />
     <MESSAGE value="added best subset class and fit score class" />
     <MESSAGE value="added unit tests for linear best subset and fit score" />
@@ -406,7 +410,8 @@
     <MESSAGE value="added univariate preprocess builder and unit test" />
     <MESSAGE value="refactored univariate preprocessor" />
     <MESSAGE value="added regression test and volatility calculation methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="added regression test and volatility calculation methods" />
+    <MESSAGE value="added statistical tests and sequential bootstrapping method" />
+    <option name="LAST_COMMIT_MESSAGE" value="added statistical tests and sequential bootstrapping method" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
