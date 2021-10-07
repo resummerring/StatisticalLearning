@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+from statsmodels.tsa.stattools import adfuller
 
 
 class FractionalDifferentiate:
@@ -42,6 +43,10 @@ class FractionalDifferentiate:
         self._expand_threshold = expand_threshold
         self._fixed_threshold = fixed_threshold
 
+    # ====================
+    #  Private
+    # ====================
+
     def _get_coefs_expanded_window(self, n: int) -> np.ndarray:
         """
         Generate first n-th coefficients from the general binary expansion formula
@@ -70,6 +75,23 @@ class FractionalDifferentiate:
             k += 1
 
         return np.array(coefs).reshape(-1, 1)
+
+    # ====================
+    #  Public
+    # ====================
+
+    @property
+    def degree(self):
+        """
+        Getter degree
+        """
+        return self._degree
+
+    def set_degree(self, degree: float):
+        """
+        Setter degree
+        """
+        self._degree = degree
 
     def fit_fracdiff_expanding_window(self, series: pd.Series) -> pd.Series:
         """
@@ -102,6 +124,7 @@ class FractionalDifferentiate:
         :param series: pd.Series, original time series
         """
 
+        # Determine significant items to use based on weight magnitude
         coefs = self._get_coefs_fixed_window()
         output = pd.Series(index=series.index)
 
@@ -114,3 +137,28 @@ class FractionalDifferentiate:
             output[index1] = np.dot(coefs.T, series[index0: index1]).squeeze()
 
         return output
+
+    def find_min_degree(self, series: pd.Series) -> bool:
+        """
+        Find the minimum degree such that the resulting fractionally differentiated
+        series is stationary with maximum preserved memory. If such degree is not
+        found within [0, 1], return False.
+
+        :param series: pd.Series, original time series
+        """
+
+        for degree in np.linspace(0.05, 1, 20):
+
+            self.set_degree(degree)
+            series_degree = self.fit_fracdiff_fixed_window(series)
+            p_value = adfuller(series_degree)[1]
+            if p_value < 0.05:
+                return True
+
+        return False
+
+
+
+
+
+

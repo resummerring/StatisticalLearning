@@ -25,6 +25,13 @@ class BoostRegressor:
     (1) Extreme sensitive to outliers since each estimators is built on previous residuals
     (2) Slower than bagging since weak estimators are build sequentially instead of simultaneously
     (3) Prone to overfit, therefore low-level learning rate and decision tree are needed
+
+    More general boosting algorithm:
+    (1) Generate training set by random sampling with replacement with weights (uniform for the first one)
+    (2) Fit an estimator using training set. Keep if accuracy meets threshold, otherwise discard
+    (3) Give more weight to misclassified samples and less weight to correctly classified observations
+    (4) Repeat the above until N estimators are found.
+    (5) Ultimate prediction is the weighted average of individual predictions
     """
 
     def __init__(self,

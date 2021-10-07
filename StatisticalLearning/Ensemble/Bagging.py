@@ -23,6 +23,27 @@ class BaggingRegressor:
     Pros:
         (1) Variance is largely reduced at the cost of slightly increasing the bias
         (2) Natural out-of-bag error is available instead of cross-validation
+
+    Var(bagging) = \sigma^2 * (\rho + (1 - \rho) / N)
+    Here \rho is the average correlation among all estimators. When \rho -> 1, Var(bagging) -> \sigma^2,
+    which means the variance is barely reduced. Hence, if the training set of different estimators are
+    highly correlated, then the variance reduction effect might not be significant any more, which is
+    particularly the case with finance data where samples are not IID and have high correlation. Even
+    worse, the out of bag score will be inflated when using redundant observations.
+
+    Solution:
+    (1) Set max_samples for each sub-estimator to be the average uniqueness of the observed samples
+    (2) Apply sequential bootstrapping method
+    (3) Apply stratified k-fold cross validation
+
+    Generally, bagging is preferred compared to boosting since financial applications is more likely to
+    overfit rather than underfit and bagging can be paralleled while boosting needs to be fit sequentially.
+
+    Machine learning algorithms such as SVM that doesn't scale well with sample size becomes more capable of
+    learning large training set when combine with bagging. For example, using SVM as the base estimator and
+    set early-stop condition (max iteration or tol) and parallelize N estimators will make it easier for
+    SVM to learn large training set. (Individual SVM might take long long time to converge, if any, and the
+    solution is not guaranteed to be a global optimum)
     """
 
     def __init__(self,

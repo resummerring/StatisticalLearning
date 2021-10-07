@@ -4,7 +4,8 @@ import random
 import numpy as np
 import pandas as pd
 from abc import ABC, abstractmethod
-from typing import Callable, List
+from typing import Callable, List, Union
+from sklearn.model_selection import KFold
 
 
 class CrossValidation(ABC):
@@ -204,3 +205,143 @@ class KFoldValidation(CrossValidation):
         self._mean_score = np.mean(self._scores)
 
         return self
+
+
+class PurgedKFoldValidation(CrossValidation):
+
+    """
+    The assumption underlying the usefulness of cross validation is that samples are IID to
+    each other. Otherwise, cross validation tend to overfit and leakage appears in the presence
+    of irrelevant features.
+
+    Solution:
+    (1) Purge: when test set is surrounded by training sets, remove the boundary samples in the
+               training set which might use information contained the test set
+    (2) Embargo: for each training set immediately after a test set, put an embargo period (can
+                 be as small as 0.01 * N) to separate training set and test set
+    """
+
+    def __init__(self,
+                 X: pd.DataFrame,
+                 y: pd.Series,
+                 model: object,
+                 scorer: Callable):
+
+        super().__init__(X, y, model, scorer)
+
+    # ====================
+    #  Public
+    # ====================
+
+    def validate(self, k: int, time: pd.Series, embargo: float, **kwargs) -> PurgedKFoldValidation:
+
+        """
+        :param k: int, number of splits
+        :param time: pd.Series, index is start time and value is end time of training samples
+        :param embargo: float, percentage of embargo period as proportion of total number of samples
+        """
+
+        split_gen = self.PurgedSplit(k, time, embargo)
+
+        for train_index, test_index in split_gen.split(self._X):
+
+            X_train, y_train = self._X.iloc[train_index, :], self._y.iloc[train_index]
+            X_test, y_test = self._X.iloc[test_index, :], self._y.iloc[test_index]
+
+            model_trained = self._model.fit(X_train, y_train)
+            pred = model_trained.predict(X_test)
+            self._scores.append(self._scorer(y_test, pred))
+
+        self._mean_score = np.mean(self._scores)
+
+        return self
+
+    class PurgedSplit(KFold):
+
+        """
+        Construct generator to yield sample indices in the train and test sets
+        after embargo period and purging are applied on original training sets.
+        """
+
+        def __init__(self,
+                     n_splits: int = 5,
+                     time: Union[pd.Series, None] = None,
+                     embargo: float = 0.):
+
+            """
+            :param n_splits: int, number of splits
+            :param time: Union[pd.Series, None], index is start time and value is end time for training samples
+            :param embargo: float, percentage of embargo period as proportion of total number of samples
+            """
+
+            super().__init__(n_splits, shuffle=False, random_state=None)
+            self._time, self._embargo = time, embargo
+
+        # ====================
+        #  Private
+        # ====================
+
+        def _get_train_index(self, test_times: pd.Series) -> pd.Series:
+            """
+            Assume a training sample spans [t(i0, t(i1))] and a test sample spans [t(j0), t(j1)]. Then
+            sample i and sample j overlap with each other if and only if any of following cases is true:
+            (1) t(j0) <= t(i0) <= t(j1)
+            (2) t(j0) <= t(i1) <= t(j1)
+            (3) t(i0) <= t(j0) <= t(j1) <= t(i1)
+
+            :param test_times: pd.Series, index is start time and value is end time for test samples
+            """
+
+            output = self._time.copy(deep=True)
+            for i, j in test_times.iteritems():
+                case1 = output[(i <= output.index) & (output.index <= j)]
+                case2 = output[(i <= output) & (output <= j)].index
+                case3 = output[(output.index <= i) & (j <= output)].index
+                output = output.drop(case1.union(case2).union(case3))
+
+            return output
+
+        def _get_embargo_period(self) -> pd.Series:
+            """
+            Apply embargo period onto original dataset
+            """
+
+            step = int(self._time.shape[0] * self._embargo)
+
+            if step == 0:
+                embargo = pd.Series(self._time, index=self._time)
+            else:
+                embargo = pd.Series(self._time[step:], index=self._time[:-step])
+                embargo = embargo.append(pd.Series(self._time[-1], index=self._time[-step:]))
+
+            return embargo
+
+        # ====================
+        #  Public
+        # ====================
+
+        def split(self, X: pd.DataFrame, y: pd.Series = None, groups=None):
+            """
+            Override base class method. Split dataset into training and test set.
+            Apply embargo period first and then purge the training set splits.
+            """
+
+            if (X.index == self._time.index).sum() != len(self._time):
+                raise ValueError("Data matrix and time events must have same index.")
+
+            indices = np.arange(X.shape[0])
+            embargo = int(X.shape[0] * self._embargo)
+
+            test_start = [(x[0], x[-1] + 1) for x in np.array_split(np.arange(X.shape[0]), self.n_splits)]
+
+            for i, j in test_start:
+
+                t0 = self._time.index[i]
+                test_index = indices[i: j]
+
+                max_idx = self._time.index.searchsorted(self._time[test_index].max())
+                train_index = self._time.index.searchsorted(self._time[self._time <= t0].index)
+                train_index = np.concatenate((train_index, indices[max_idx + embargo:]))
+
+                yield train_index, test_index
+
