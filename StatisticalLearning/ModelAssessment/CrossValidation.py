@@ -344,4 +344,3 @@ class PurgedKFoldValidation(CrossValidation):
                 train_index = np.concatenate((train_index, indices[max_idx + embargo:]))
 
                 yield train_index, test_index
-
