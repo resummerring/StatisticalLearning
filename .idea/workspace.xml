@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="added purged k-fold cross validation">
+    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="added hyperparameter tuning methods">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/ModelAssessment/CrossValidation.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/ModelAssessment/CrossValidation.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -373,7 +372,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633577369905</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="added hyperparameter tuning methods">
+      <created>1633807213927</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1633807213927</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -401,7 +407,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added unit tests for linear best subset and fit score" />
     <MESSAGE value="added AIC score for linear regression" />
     <MESSAGE value="added forward and backward stepwise selction and unittests" />
     <MESSAGE value="added principal component regression and partial least squares" />
@@ -426,7 +431,8 @@
     <MESSAGE value="added statistical tests and sequential bootstrapping method" />
     <MESSAGE value="added fractionally differential method" />
     <MESSAGE value="added purged k-fold cross validation" />
-    <option name="LAST_COMMIT_MESSAGE" value="added purged k-fold cross validation" />
+    <MESSAGE value="added hyperparameter tuning methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="added hyperparameter tuning methods" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
