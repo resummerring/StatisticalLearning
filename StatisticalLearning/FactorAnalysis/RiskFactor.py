@@ -86,15 +86,17 @@ class TimeSeriesRFModel(RFModel):
 
     'Time series' comes from the fact that for each stock, the factor exposure is computed
     through multiple linear regression with time series return data
+
+    Typically factor returns are calculated using theoretical synthetic portfolios like Fama-French
     """
 
-    def __init__(self, stock_return: pd.Data, factor_return: pd.DataFrame):
+    def __init__(self, stock_return: pd.DataFrame, factor_return: pd.DataFrame):
         super().__init__(stock_return=stock_return, factor_return=factor_return, factor_exposure=None)
 
     def fit(self):
         """
         Main fit function for time series risk factor model:
-            loop over stocks to conducting multiple linear regression with time series return data
+            loop over stocks to conduct multiple linear regression with time series return data
         """
 
         factor_exposure = pd.DataFrame(columns=self._factor_return.columns)
@@ -107,3 +109,34 @@ class TimeSeriesRFModel(RFModel):
             factor_exposure.iloc[i, :] = np.array(lr.coef_).reshape(1, -1)
 
         self._factor_exposure = factor_exposure
+
+
+class CrossSectionalRFModel(RFModel):
+    """
+    Given factor exposure, estimate factor return:
+        for each period t, fit a multiple linear regression:
+            r(i, t) = \sum_k b(i, k) * f(k, t) + s(t) for i = 1,...,N
+                -> f(k, t) is the factor return at time period t
+
+    'Cross sectional' comes from the fact that for each period, the factor return is computed
+    through multiple linear regression with cross sectional return data
+    """
+
+    def __init__(self, stock_return: pd.DataFrame, factor_exposure: pd.DataFrame):
+        super().__init__(stock_return=stock_return, factor_return=None, factor_exposure=factor_exposure)
+
+    def fit(self):
+        """
+        Main fit function for cross sectional risk factor model:
+            loop over time periods to conduct multiple linear regression with cross sectional return data
+        """
+
+        factor_return = pd.DataFrame(columns=self._factor_exposure.columns)
+
+        lr = LinearRegression(fit_intercept=True)
+
+        for i in range(self._stock_return.shape[0]):
+            lr = lr.fit(X=self._factor_exposure, y=pd.Series(self._stock_return.iloc[i, :]))
+            factor_return.iloc[i, :] = np.array(lr.coef_).reshape(1, -1)
+
+        self._factor_return = factor_return
