@@ -23,6 +23,9 @@ class RFModel(ABC):
     Given factor return f and factor exposure:
         F = cov(f)
         s = r - Bf -> S = cov(s)
+
+    Risk factors models are used to neutralize portfolio's exposure to risk factors so that remaining
+    portfolios returns and volatility are attributed to alpha factors.
     """
 
     def __init__(self,

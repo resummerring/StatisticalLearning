@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="added a simple factor class">
+    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="added cross-sectional risk factor model">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/StatisticalLearning/FactorAnalysis/Factor.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/FactorAnalysis/Factor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StatisticalLearning/FactorAnalysis/RiskFactor.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/FactorAnalysis/RiskFactorModel.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -394,7 +395,21 @@
       <option name="project" value="LOCAL" />
       <updated>1633892967066</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="added time series risk factor model">
+      <created>1633983566650</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1633983566650</updated>
+    </task>
+    <task id="LOCAL-00034" summary="added cross-sectional risk factor model">
+      <created>1633985254467</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1633985254467</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -422,8 +437,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added principal component regression and partial least squares" />
-    <MESSAGE value="added cross validation methods and unit tests" />
     <MESSAGE value="added gradient descent and stochastic gradient descent" />
     <MESSAGE value="added t-statistic and p-value for linear regression" />
     <MESSAGE value="added logistic regression and gradient descent solver." />
@@ -447,7 +460,9 @@
     <MESSAGE value="added hyperparameter tuning methods" />
     <MESSAGE value="added multiprocessing engine" />
     <MESSAGE value="added a simple factor class" />
-    <option name="LAST_COMMIT_MESSAGE" value="added a simple factor class" />
+    <MESSAGE value="added time series risk factor model" />
+    <MESSAGE value="added cross-sectional risk factor model" />
+    <option name="LAST_COMMIT_MESSAGE" value="added cross-sectional risk factor model" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
