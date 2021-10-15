@@ -2,16 +2,19 @@ from __future__ import annotations
 
 import numpy as np
 import pandas as pd
-from typing import Union, List, Any
+from typing import Union, List, Any, Callable
 
 
 class AlphaVector:
 
     """
-    An alpha vector is a vector of alpha values at a single time period over stock universe
+    An alpha vector is a vector of alpha values at a single time period T(i) over stock universe I(1) - I(N)
 
     Alpha factor: drivers of mean return
     Risk factor: drivers of volatility
+
+    Notice, static stock universe should be avoided since it introduces look-ahead bias: survivorship bias.
+    Instead, a dynamic stock universe can be used such as the component stocks of an index, such as S&P 500
     """
 
     def __init__(self, vector: pd.Series, index: Any):
@@ -22,6 +25,24 @@ class AlphaVector:
 
         self._vector = vector
         self._index = index
+
+    # ====================
+    #  Public
+    # ====================
+
+    @property
+    def vector(self) -> pd.Series:
+        """
+        Return alpha value vector
+        """
+        return self._vector
+
+    @property
+    def index(self) -> Any:
+        """
+        Return vector time period
+        """
+        return self._index
 
     def market_neutral(self) -> AlphaVector:
         """
@@ -115,20 +136,6 @@ class AlphaVector:
 
         return self.market_neutral().re_scale()
 
-    @property
-    def factor(self) -> pd.Series:
-        """
-        Return alpha value vector
-        """
-        return self._vector
-
-    @property
-    def index(self) -> Any:
-        """
-        Return vector time period
-        """
-        return self._index
-
 
 class AlphaFactor:
 
@@ -141,12 +148,34 @@ class AlphaFactor:
 
         vectors.sort(key=lambda vector: vector.index, reverse=False)
 
-        columns = list(vectors[0].index)
-        index = [vector.index for vector in vectors]
+        self._vectors = vectors
+        self._alpha = self.weight(lambda alpha: alpha)
 
-        self._factor = pd.DataFrame(columns=columns, index=index)
-        for i, vector in enumerate(vectors):
-            self._factor.iloc[i, :] = np.array(vector.factor)
+    # ====================
+    #  Public
+    # ====================
+
+    @property
+    def alpha(self) -> pd.DataFrame:
+        """
+        Return T * N alpha factor matrix
+        """
+
+        return self._alpha
+
+    def weight(self, transformer: Callable) -> pd.DataFrame:
+        """
+        Transform alpha vector into portfolio weights
+        """
+
+        columns = list(self._vectors[0].index)
+        index = [vector.index for vector in self._vectors]
+
+        weights = pd.DataFrame(columns=columns, index=index)
+        for i, vector in enumerate(self._vectors):
+            weights.iloc[i, :] = transformer(vector.vector)
+
+        return weights / weights.sum(axis=1)
 
     def smooth(self, columns: Union[List[str], None], weight: List[float]) -> AlphaFactor:
         """
@@ -157,11 +186,11 @@ class AlphaFactor:
         """
 
         if columns is None:
-            self._factor = self._factor.apply(
+            self._alpha = self._alpha.apply(
                 lambda col: col.rolling.mean(window=len(weight))
                 .apply(lambda window: np.dot(window, weight) / sum(weight)), axis=0)
         else:
-            self._factor[columns] = self._factor[columns].apply(
+            self._alpha[columns] = self._alpha[columns].apply(
                 lambda col: col.rolling.mean(window=len(weight))
                 .apply(lambda window: np.dot(window, weight) / sum(weight)), axis=0)
 

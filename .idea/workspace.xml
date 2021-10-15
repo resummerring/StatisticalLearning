@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="added winsorize and rank to factors">
+    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="added alpha vector and alpha factor">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/FactorAnalysis/Factor.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/FactorAnalysis/Factor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StatisticalLearning/FactorAnalysis/Factor.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/FactorAnalysis/AlphaFactor.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -415,7 +415,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634098838008</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="added alpha vector and alpha factor">
+      <created>1634101015574</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1634101015574</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -443,7 +450,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added t-statistic and p-value for linear regression" />
     <MESSAGE value="added logistic regression and gradient descent solver." />
     <MESSAGE value="added stochastic gradient descent for logistic regression and added logging tool" />
     <MESSAGE value="added linear discriminant analysis with 2-class unittest" />
@@ -468,7 +474,8 @@
     <MESSAGE value="added time series risk factor model" />
     <MESSAGE value="added cross-sectional risk factor model" />
     <MESSAGE value="added winsorize and rank to factors" />
-    <option name="LAST_COMMIT_MESSAGE" value="added winsorize and rank to factors" />
+    <MESSAGE value="added alpha vector and alpha factor" />
+    <option name="LAST_COMMIT_MESSAGE" value="added alpha vector and alpha factor" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
