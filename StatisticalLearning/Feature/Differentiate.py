@@ -156,9 +156,3 @@ class FractionalDifferentiate:
                 return True
 
         return False
-
-
-
-
-
-

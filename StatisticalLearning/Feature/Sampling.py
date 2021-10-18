@@ -96,9 +96,3 @@ class SequentialBootStrap:
             output.append(np.random.choice(candidates, p=prob))
 
         return output
-
-
-
-
-
-

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="added univariate alpha evaluation class">
+    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="completed univariate evaluation class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/FactorAnalysis/AlphaEvaluation.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/FactorAnalysis/AlphaEvaluation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StatisticalLearning/Feature/Differentiate.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/Feature/Differentiate.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StatisticalLearning/Feature/Sampling.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/Feature/Sampling.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,28 +53,7 @@
       <recent name="C:\Users\15300\PycharmProjects\pythonProject\StatisticalLearning\LinearModel" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.RegressionTest">
-    <configuration name="RegressionTest" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="pythonProject" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/QuantResearch" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/QuantResearch/RegressionTest.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python tests.Python tests for TEST_SignalEnhance.TEST_SignalEnhance">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -95,7 +75,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for TEST_LogistcRegression.TEST_LogisticRegression" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for TEST_SignalEnhance.TEST_SignalEnhance" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -105,11 +85,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;TEST_LogistcRegression.TEST_LogisticRegression&quot;" />
+      <option name="_new_target" value="&quot;TEST_SignalEnhance.TEST_SignalEnhance&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for TEST_ShrinkageRegression.TEST_PCRegression.test_principal_component_regression" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for TEST_SignalEnhance.TEST_SignalEnhance.test_calibration" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -119,11 +99,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;TEST_ShrinkageRegression.TEST_PCRegression.test_principal_component_regression&quot;" />
+      <option name="_new_target" value="&quot;TEST_SignalEnhance.TEST_SignalEnhance.test_calibration&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests in TEST_ShrinkageRegression.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for TEST_SignalEnhance.TEST_SignalEnhance.test_fit_kde" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -133,11 +113,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_ShrinkageRegression.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <option name="_new_target" value="&quot;TEST_SignalEnhance.TEST_SignalEnhance.test_fit_kde&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests in UnitTest" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for TEST_SignalEnhance.TEST_SignalEnhance.test_marcenko_pastur_pdf" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -147,17 +127,31 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/StatisticalLearning/UnitTest&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <option name="_new_target" value="&quot;TEST_SignalEnhance.TEST_SignalEnhance.test_marcenko_pastur_pdf&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for TEST_SignalEnhance.TEST_SignalEnhance.test_marcenko_pastur_pdf_against_kde_fit" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/StatisticalLearning/UnitTest" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;TEST_SignalEnhance.TEST_SignalEnhance.test_marcenko_pastur_pdf_against_kde_fit&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.RegressionTest" />
-        <item itemvalue="Python tests.Python tests in UnitTest" />
-        <item itemvalue="Python tests.Python tests for TEST_LogistcRegression.TEST_LogisticRegression" />
-        <item itemvalue="Python tests.Python tests in TEST_ShrinkageRegression.py" />
-        <item itemvalue="Python tests.Python tests for TEST_ShrinkageRegression.TEST_PCRegression.test_principal_component_regression" />
+        <item itemvalue="Python tests.Python tests for TEST_SignalEnhance.TEST_SignalEnhance" />
+        <item itemvalue="Python tests.Python tests for TEST_SignalEnhance.TEST_SignalEnhance.test_calibration" />
+        <item itemvalue="Python tests.Python tests for TEST_SignalEnhance.TEST_SignalEnhance.test_marcenko_pastur_pdf_against_kde_fit" />
+        <item itemvalue="Python tests.Python tests for TEST_SignalEnhance.TEST_SignalEnhance.test_fit_kde" />
+        <item itemvalue="Python tests.Python tests for TEST_SignalEnhance.TEST_SignalEnhance.test_marcenko_pastur_pdf" />
       </list>
     </recent_temporary>
   </component>
@@ -429,7 +423,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634264605157</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="completed univariate evaluation class">
+      <created>1634349202769</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1634349202769</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -457,7 +458,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added stochastic gradient descent for logistic regression and added logging tool" />
     <MESSAGE value="added linear discriminant analysis with 2-class unittest" />
     <MESSAGE value="added dimension reduction technique for linear discriminant analysis and multi-class unit test" />
     <MESSAGE value="refactored model selection and model assessment methods so that they can accept any object with fit() and predict() implementation" />
@@ -482,7 +482,8 @@
     <MESSAGE value="added winsorize and rank to factors" />
     <MESSAGE value="added alpha vector and alpha factor" />
     <MESSAGE value="added univariate alpha evaluation class" />
-    <option name="LAST_COMMIT_MESSAGE" value="added univariate alpha evaluation class" />
+    <MESSAGE value="completed univariate evaluation class" />
+    <option name="LAST_COMMIT_MESSAGE" value="completed univariate evaluation class" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
