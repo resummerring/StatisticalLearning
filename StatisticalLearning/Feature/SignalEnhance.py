@@ -50,6 +50,9 @@ class SignalEnhance:
         # Denoised correlation matrix property
         self._denoised_corr = None
 
+        # Detoned correlation matrix property
+        self._detoned_corr = None
+
         # Hyper-parameter tuning KDE
         self._band_width = band_width
         self._kernel = kernel
@@ -148,6 +151,17 @@ class SignalEnhance:
 
         return corr
 
+    @staticmethod
+    def corr_to_cov(corr: np.ndarray, std: np.ndarray) -> np.ndarray:
+        """
+        Transform a correlation matrix into a covariance matrix
+
+        :param corr: np.ndarray, correlation matrix
+        :param std: np.ndarray, diagonal standard deviation elements
+        """
+
+        return corr * np.outer(std, std)
+
     def denoise(self, method: str = 'Constant Residual', alpha: Union[float, None] = 1.):
         """
         Denoise correlation matrix according to calibrated sigma and max eigenvalue threshold:
@@ -174,7 +188,7 @@ class SignalEnhance:
         eval_max, sigma = self._fit_max_eval()
         lambds = np.diag(self._original_corr_eval).copy()
 
-        n_factors = next(index for index, val in enumerate(lambds) if val < eval_max)
+        n_factors = lambds.shape[0] - lambds[::-1].searchsorted(eval_max)
 
         if method == 'Constant Residual':
 
@@ -199,3 +213,19 @@ class SignalEnhance:
 
         else:
             raise ValueError("Accepted shrinkage methods are: (1) Constant Residual (2) Target Shrinkage")
+
+    def detone(self, n_factors: int = 1):
+        """
+        Remove market components from correlation matrix, which is helpful in the context of clustering.
+
+
+        :param n_factors: int, number of market components to be removed
+        """
+
+        if self._denoised_corr is None:
+            self.denoise()
+
+        eval, evec = self.get_sorted_pca(self._denoised_corr)
+        lambds_market, evec_market = eval[:n_factors, :n_factors], evec[:, :n_factors]
+        detoned_corr = self._denoised_corr - np.dot(evec_market, lambds_market).dot(evec_market.T)
+        self._detoned_corr = self.cov_to_corr(detoned_corr)
