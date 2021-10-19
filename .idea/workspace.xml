@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="completed univariate evaluation class">
+    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="added signal enhance class and unittest">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/Feature/Differentiate.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/Feature/Differentiate.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/Feature/Sampling.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/Feature/Sampling.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StatisticalLearning/Feature/SignalEnhance.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/Feature/SignalEnhance.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_SignalEnhance.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_SignalEnhance.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +53,7 @@
       <recent name="C:\Users\15300\PycharmProjects\pythonProject\StatisticalLearning\LinearModel" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for TEST_SignalEnhance.TEST_SignalEnhance">
+  <component name="RunManager" selected="Python tests.Python tests for TEST_SignalEnhance.TEST_SignalEnhance.test_matrix_with_signal">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -103,7 +103,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for TEST_SignalEnhance.TEST_SignalEnhance.test_fit_kde" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for TEST_SignalEnhance.TEST_SignalEnhance.test_denoise" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -113,11 +113,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;TEST_SignalEnhance.TEST_SignalEnhance.test_fit_kde&quot;" />
+      <option name="_new_target" value="&quot;TEST_SignalEnhance.TEST_SignalEnhance.test_denoise&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for TEST_SignalEnhance.TEST_SignalEnhance.test_marcenko_pastur_pdf" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for TEST_SignalEnhance.TEST_SignalEnhance.test_matrix_with_signal" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -127,11 +127,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;TEST_SignalEnhance.TEST_SignalEnhance.test_marcenko_pastur_pdf&quot;" />
+      <option name="_new_target" value="&quot;TEST_SignalEnhance.TEST_SignalEnhance.test_matrix_with_signal&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for TEST_SignalEnhance.TEST_SignalEnhance.test_marcenko_pastur_pdf_against_kde_fit" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for TEST_SignalEnhance.TEST_SignalEnhance.test_random_matrix" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -141,17 +141,17 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;TEST_SignalEnhance.TEST_SignalEnhance.test_marcenko_pastur_pdf_against_kde_fit&quot;" />
+      <option name="_new_target" value="&quot;TEST_SignalEnhance.TEST_SignalEnhance.test_random_matrix&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests for TEST_SignalEnhance.TEST_SignalEnhance.test_matrix_with_signal" />
+        <item itemvalue="Python tests.Python tests for TEST_SignalEnhance.TEST_SignalEnhance.test_random_matrix" />
+        <item itemvalue="Python tests.Python tests for TEST_SignalEnhance.TEST_SignalEnhance.test_denoise" />
         <item itemvalue="Python tests.Python tests for TEST_SignalEnhance.TEST_SignalEnhance" />
         <item itemvalue="Python tests.Python tests for TEST_SignalEnhance.TEST_SignalEnhance.test_calibration" />
-        <item itemvalue="Python tests.Python tests for TEST_SignalEnhance.TEST_SignalEnhance.test_marcenko_pastur_pdf_against_kde_fit" />
-        <item itemvalue="Python tests.Python tests for TEST_SignalEnhance.TEST_SignalEnhance.test_fit_kde" />
-        <item itemvalue="Python tests.Python tests for TEST_SignalEnhance.TEST_SignalEnhance.test_marcenko_pastur_pdf" />
       </list>
     </recent_temporary>
   </component>
@@ -430,7 +430,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634349202769</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="added signal enhance class and unittest">
+      <created>1634518643401</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1634518643401</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -458,7 +465,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added linear discriminant analysis with 2-class unittest" />
     <MESSAGE value="added dimension reduction technique for linear discriminant analysis and multi-class unit test" />
     <MESSAGE value="refactored model selection and model assessment methods so that they can accept any object with fit() and predict() implementation" />
     <MESSAGE value="refactored  previous files;&#10;added bagging method and unittest" />
@@ -483,7 +489,8 @@
     <MESSAGE value="added alpha vector and alpha factor" />
     <MESSAGE value="added univariate alpha evaluation class" />
     <MESSAGE value="completed univariate evaluation class" />
-    <option name="LAST_COMMIT_MESSAGE" value="completed univariate evaluation class" />
+    <MESSAGE value="added signal enhance class and unittest" />
+    <option name="LAST_COMMIT_MESSAGE" value="added signal enhance class and unittest" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
