@@ -40,7 +40,7 @@ class SignalEnhance:
         self._q = self._matrix.shape[0] / self._matrix.shape[1] if not is_cov else q
 
         if self._q is None:
-            raise ValueError("If covariance matrix is provided, q is also needed")
+            raise Exception("If covariance matrix is provided, q is also needed")
 
         # Original covariance / correlation matrix property
         self._original_cov = np.cov(self._matrix, rowvar=False) if not is_cov else matrix
@@ -131,7 +131,7 @@ class SignalEnhance:
         try:
             eval, evec = np.linalg.eigh(matrix)
         except np.linalg.LinAlgError:
-            raise ValueError("Input matrix cannot be eigen-decomposed.")
+            raise Exception("Input matrix cannot be eigen-decomposed.")
 
         order = eval.argsort()[::-1]
         eval, evec = eval[order], evec[:, order]
@@ -212,7 +212,7 @@ class SignalEnhance:
                 self._denoised_corr = corr_signal + alpha * corr_noise + (1 - alpha) * np.diag(np.diag(corr_noise))
 
         else:
-            raise ValueError("Accepted shrinkage methods are: (1) Constant Residual (2) Target Shrinkage")
+            raise Exception("Accepted shrinkage methods are: (1) Constant Residual (2) Target Shrinkage")
 
     def detone(self, n_factors: int = 1):
         """

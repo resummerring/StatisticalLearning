@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="added denoise technique and unittest with covariance with signals">
+    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="added detoned technique">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/StatisticalLearning/Feature/SignalEnhance.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/Feature/SignalEnhance.py" afterDir="false" />
     </list>
@@ -443,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634608983479</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="added detoned technique">
+      <created>1634611325831</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1634611325831</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -471,7 +478,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactored model selection and model assessment methods so that they can accept any object with fit() and predict() implementation" />
     <MESSAGE value="refactored  previous files;&#10;added bagging method and unittest" />
     <MESSAGE value="added gradient boosting and unittest" />
     <MESSAGE value="added bagging classifier" />
@@ -496,7 +502,8 @@
     <MESSAGE value="completed univariate evaluation class" />
     <MESSAGE value="added signal enhance class and unittest" />
     <MESSAGE value="added denoise technique and unittest with covariance with signals" />
-    <option name="LAST_COMMIT_MESSAGE" value="added denoise technique and unittest with covariance with signals" />
+    <MESSAGE value="added detoned technique" />
+    <option name="LAST_COMMIT_MESSAGE" value="added detoned technique" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
