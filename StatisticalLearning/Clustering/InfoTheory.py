@@ -1,5 +1,4 @@
 import numpy as np
-import pandas as pd
 from typing import List
 
 
@@ -122,3 +121,38 @@ class InfoDistance:
         assert np.array_equal(p.value, q.value), "Input random variables are not define on the same probability space"
 
         return -np.dot(p.prob, np.log(q.prob))
+
+    @staticmethod
+    def mutual_info(rv: DiscreteRV, cond_rv: CondDiscreteRV) -> float:
+        """
+        I(X, Y) = H(X) - H(X|Y) = H(X) + H(Y) - H(X, Y)
+        I(X, Y) >= 0, I(X, Y) = I(Y, X), I(X, X) = H(X), I(X, Y) <= min(H(X), H(Y))
+        Grouping property: I(X, Y, Z) = I(X, Y) + I((X,Y), Z)
+        I(X, Y) = 0 if X and Y are independent
+
+        :param rv: DiscreteRV, discrete random variable
+        :param cond_rv: RandDiscreteRV, rv conditional on another DiscreteRV
+        """
+        return InfoDistance.entropy(rv) - InfoDistance.cond_entropy(cond_rv)
+
+    @staticmethod
+    def variation_info(rv_x: DiscreteRV, rv_y: DiscreteRV, mutual_info: float, norm: bool = False) -> float:
+        """
+        VI(X, Y) = H(X|Y) + H(Y|X) = H(X) + H(Y) - 2I(X, Y) = H(X, Y) - I(X, Y)
+        Uncertainty in one variable if value of the other is provided
+        VI(X, Y) >= 0, VI(X, Y) = 0 -> X = Y
+
+        Variation of information is a metric since it satisfies:
+        (1) Non-negativity: VI(X, Y) >= 0
+        (2) Symmetry: VI(X, Y) = VI(Y, X)
+        (3) Triangle inequality: VI(X, Z) <= VI(X, Y) + VI(Y, Z)
+
+        :param rv_x: DiscreteRV, discrete random variable X
+        :param rv_y: DiscreteRV, discrete random variable Y
+        :param mutual_info: float, mutual info between X and Y
+        :param norm: bool, whether to apply normalization
+        """
+
+        h_x, h_y = InfoDistance.entropy(rv_x), InfoDistance.entropy(rv_y)
+        var_info = h_x + h_y - 2 * mutual_info
+        return var_info / max(abs(h_x), abs(h_y)) if norm else var_info

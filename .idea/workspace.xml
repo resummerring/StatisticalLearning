@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="added detoned technique">
+    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="added information theory metrics">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/Feature/SignalEnhance.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/Feature/SignalEnhance.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StatisticalLearning/Clustering/InfoTheory.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/Clustering/InfoTheory.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -450,7 +450,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634611325831</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="added information theory metrics">
+      <created>1634870143161</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1634870143162</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -478,7 +485,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactored  previous files;&#10;added bagging method and unittest" />
     <MESSAGE value="added gradient boosting and unittest" />
     <MESSAGE value="added bagging classifier" />
     <MESSAGE value="added distance measure class with njit decorator and unittest" />
@@ -503,7 +509,8 @@
     <MESSAGE value="added signal enhance class and unittest" />
     <MESSAGE value="added denoise technique and unittest with covariance with signals" />
     <MESSAGE value="added detoned technique" />
-    <option name="LAST_COMMIT_MESSAGE" value="added detoned technique" />
+    <MESSAGE value="added information theory metrics" />
+    <option name="LAST_COMMIT_MESSAGE" value="added information theory metrics" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
