@@ -6,6 +6,11 @@ from typing import Tuple
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_samples
 
+from StatisticalLearning.Toolbox.Logger import Logger
+
+
+logger = Logger.get_logger(level='info')
+
 
 class OptimalCluster:
 
@@ -35,7 +40,7 @@ class OptimalCluster:
             cluster_final[len(cluster_final.keys())] = list(cluster[label])
 
         new_idx = [idx for label in cluster_final.keys() for idx in cluster_final[label]]
-        matrix = X.iloc[new_idx, :]
+        matrix = X.loc[new_idx, :]
 
         cluster_labels = np.zeros(matrix.shape[0])
         for label in cluster_final.keys():
@@ -71,11 +76,15 @@ class OptimalCluster:
         for i in range(self._n_init):
             for j in range(2, max_clusters + 1):
 
-                model = KMeans(n_clsters=i, n_jobs=1, n_init=1).fit(X)
+                model = KMeans(n_clusters=j, n_init=1)
+                model = model.fit(X)
                 score = silhouette_samples(X, model.labels_)
 
                 q = score.mean() / score.std()
                 optimal_q = optimal_score.mean() / optimal_score.std()
+
+                logger.info(f"Clustering quality with {j:<2} clusters = {round(q, 4)} "
+                            f"while optimal quality = {round(optimal_q, 4)}")
 
                 if np.isnan(optimal_q) or q > optimal_q:
                     optimal_score, optimal_model = score, model
@@ -110,7 +119,7 @@ class OptimalCluster:
                      for label in clusters.keys()}
 
         # Mean cluster-level clustering quality
-        mean_q = np.mean(cluster_q.values())
+        mean_q = np.mean(list(cluster_q.values()))
 
         # Unqualified cluster
         redo_cluster = [label for label in clusters.keys() if cluster_q[label] < mean_q]
@@ -130,7 +139,7 @@ class OptimalCluster:
 
             final_cluster_q = {label: np.mean(score_final[cluster_final[label]])
                                     / np.std(score_final[cluster_final[label]]) for label in cluster_final.keys()}
-            final_mean_q = np.mean(final_cluster_q.values())
+            final_mean_q = np.mean(list(final_cluster_q.values()))
 
             if final_mean_q <= redo_mean_q:
                 return matrix, clusters, score
