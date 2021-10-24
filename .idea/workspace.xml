@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="added optimal clustering algorithm">
+    <list default="true" id="b5db7da7-0c1e-4492-90ca-0a57e66b7f17" name="Changes" comment="added unittest for optimal clustering algorithm">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/Clustering/OptimalCluster.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/Clustering/OptimalCluster.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_OptimalCluster.py" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticalLearning/UnitTest/TEST_OptimalCluster.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +51,7 @@
       <recent name="C:\Users\15300\PycharmProjects\pythonProject\StatisticalLearning\LinearModel" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for TEST_OptimalCluster.TEST_OptimalCluster.test_optimal_clustering">
+  <component name="RunManager" selected="Python tests.Python tests for TEST_OptimalCluster.TEST_OptimalCluster">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -147,9 +145,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests for TEST_OptimalCluster.TEST_OptimalCluster" />
         <item itemvalue="Python tests.Python tests for TEST_OptimalCluster.TEST_OptimalCluster.test_optimal_clustering" />
         <item itemvalue="Python tests.Python tests for TEST_OptimalCluster.TEST_OptimalCluster.test_base_clustering" />
-        <item itemvalue="Python tests.Python tests for TEST_OptimalCluster.TEST_OptimalCluster" />
         <item itemvalue="Python tests.Python tests for TEST_SignalEnhance.TEST_SignalEnhance.test_matrix_with_signal" />
         <item itemvalue="Python tests.Python tests for TEST_SignalEnhance.TEST_SignalEnhance.test_random_matrix" />
       </list>
@@ -472,7 +470,14 @@
       <option name="project" value="LOCAL" />
       <updated>1635003996412</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="added unittest for optimal clustering algorithm">
+      <created>1635088500657</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1635088500657</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -500,7 +505,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added distance measure class with njit decorator and unittest" />
     <MESSAGE value="added kernel class with njit and unittest" />
     <MESSAGE value="added Ridge regression and unit tests" />
     <MESSAGE value="added SVM classifier and unit test" />
@@ -525,7 +529,8 @@
     <MESSAGE value="added information theory metrics" />
     <MESSAGE value="added mutual information and variation of info" />
     <MESSAGE value="added optimal clustering algorithm" />
-    <option name="LAST_COMMIT_MESSAGE" value="added optimal clustering algorithm" />
+    <MESSAGE value="added unittest for optimal clustering algorithm" />
+    <option name="LAST_COMMIT_MESSAGE" value="added unittest for optimal clustering algorithm" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
